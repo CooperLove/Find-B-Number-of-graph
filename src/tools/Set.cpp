@@ -17,7 +17,7 @@ Set::Set(int size){
 /*
  * Destructor
  * */
-virtual Set::~Set(){
+Set::~Set(){
 	//TODO
 }
 
@@ -67,7 +67,7 @@ void Set::inter(Set* s){
 /*
  * Complemento do conjunto em relação ao tamanho
  * */
-void Set* Set::complement(){
+Set* Set::complement(){
 	//TODO
 	return NULL;
 }
