@@ -134,3 +134,25 @@ void Graph::print(){
 	}
 	
 }
+
+void Graph::AllocNeigh (){
+	for (int i = 0; i < n; i++){
+		Set* s = new Set(n);
+		this->neighbors[i] = *s;
+	}
+}
+
+void Graph::SetN (int num){
+	this->n = num;
+}
+void Graph::SetM (int num){
+	this->m = num;
+}
+
+int Graph::GetN (){
+	return this->n;
+}
+int Graph::GetM (){
+	return this->m;
+}
+

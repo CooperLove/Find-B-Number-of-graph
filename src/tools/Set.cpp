@@ -7,7 +7,8 @@
 
 #include "Set.h"
 #include <cstdio>
-
+#include <stdlib.h>
+#include <stdio.h>
 
 Set::Set(){
 	

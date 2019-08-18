@@ -85,6 +85,16 @@ public:
 	 * print
 	 * */
 	void print();
+
+	/*
+	 * Aloca o array de vizinhos para todos os vértices
+	 * */
+	void AllocNeigh ();
+
+	void SetN (int);
+	void SetM (int);
+	int GetN ();
+	int GetM ();
 };
 
 #endif /* SRC_TOOLS_GRAPH_H_ */
