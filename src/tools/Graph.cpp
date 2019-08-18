@@ -90,8 +90,8 @@ Set* Graph::getAntiNeig(long v){
 	//TODO
 	Set* s = new Set(this->n);
 	for (int i = 0; i < this->n; i++)
-		if (this->neighbors[v].vertices[i] == 1)
-			s->vertices[i] = 0;
+		if (this->neighbors[v].vertices[i] == 0)
+			s->vertices[i] = 1;
 	return s;
 }
 
