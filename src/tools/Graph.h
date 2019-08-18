@@ -17,7 +17,7 @@ private:
 	long n; // numero de vertices
 	long m; // numero de arestas
 
-	Set* edges; //a matrix de adjacencias, cada vértice tem sei próprio Set
+	Set* neighbors; //a matrix de adjacencias, cada vértice tem sei próprio Set
 
 	Graph();// cria um grafo vazio, necessário para alguns métodos.
 

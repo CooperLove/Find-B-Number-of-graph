@@ -12,9 +12,13 @@
 
 class Set {
 public:
+
+	int* vertices;
+	int numVer;
 	/*
 	 * Cria um conjunto de tamanho n, para armzenar os elementos de 0 até n-1
 	 * */
+	Set();
 	Set(int size);
 
 	/*
@@ -113,6 +117,8 @@ public:
 	 * Imprimi i conjunto
 	 * */
 	void print();
+private:
+	int currIndex;
 };
 
 #endif /* SRC_TOOLS_SET_H_ */

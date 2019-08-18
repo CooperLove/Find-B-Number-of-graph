@@ -6,12 +6,23 @@
  */
 
 #include "Set.h"
+#include <cstdio>
 
+
+Set::Set(){
+	
+}
 /*
  * Cria um conjunto de tamanho n, para armzenar os elementos de 0 até n-1
  * */
 Set::Set(int size){
 	//TOOD
+	int* ver = new int[size];
+	this->vertices = ver;
+	this->numVer = size;
+	this->currIndex = 0;
+	for (int i = 0; i < size; i++)
+		this->vertices[i] = 0;
 }
 
 /*
@@ -26,6 +37,7 @@ Set::~Set(){
  * */
 void Set::add(long elem){
 	//TODO
+	this->vertices[elem] = 1;
 }
 
 /*
@@ -33,6 +45,8 @@ void Set::add(long elem){
  * */
 void Set::addAll(){
 	//TODO
+	for (int i = 0; i < this->numVer; i++)
+		this->vertices[i] = 1;
 }
 
 /*
@@ -40,6 +54,7 @@ void Set::addAll(){
  * */
 void Set::remove(long elem){
 	//TODO
+	this->vertices[elem] = 0;
 }
 
 /*
@@ -47,6 +62,9 @@ void Set::remove(long elem){
  * */
 void Set::removeAll(){
 	//TODO
+	free(&this->vertices);
+	Set(this->numVer);
+	this->currIndex = 0;
 }
 
 /*
@@ -54,6 +72,10 @@ void Set::removeAll(){
  * */
 bool Set::isIn(long elem){
 	//TODO
+	for (int i = 0; i < this->numVer; i++)
+		if (this->vertices[i] == elem)
+			return true;
+	
 	return false;
 }
 
@@ -62,6 +84,10 @@ bool Set::isIn(long elem){
  * */
 void Set::inter(Set* s){
 	//TODO
+	Set* q = new Set(this->numVer);
+	for (int i = 0; i < this->numVer ; i++)
+		if (this->vertices[i] == 1 && s->vertices[i] == 1)
+			q->vertices[i] = 1;
 }
 
 /*
@@ -77,7 +103,11 @@ Set* Set::complement(){
  * */
 Set* Set::copy(){
 	//TODO
-	return NULL;
+	Set* s = new Set(this->numVer);
+	for (int i = 0; i < this->numVer; i++)
+		s[i] = this->vertices[i];
+	
+	return s;
 }
 
 /**
@@ -86,6 +116,14 @@ Set* Set::copy(){
  */
 bool Set::isEqual(Set* s){
 	//TODO
+	if (s->numVer != this->numVer)
+		return false;
+
+	for (int i = 0; i < this->numVer; i++)
+		if (s->vertices[i] != this->vertices[i])
+			return false;
+	
+	return true;
 }
 
 /*
@@ -93,6 +131,9 @@ bool Set::isEqual(Set* s){
  * */
 void Set::subtr(Set* s){
 	//TODO
+	for (int i = 0; i < this->numVer; i++)
+		if (this->vertices[i] == 1 && s->vertices[i] == 1)
+			this->vertices[i] = 0;
 }
 
 /*
@@ -100,6 +141,9 @@ void Set::subtr(Set* s){
  * */
 void Set::unio(Set* s){
 	//TODO
+	for (int i = 0; i < this->numVer; i++)
+		if (s->vertices[i] == 1)
+			this->vertices[i] == 1;
 }
 
 /*
@@ -107,7 +151,7 @@ void Set::unio(Set* s){
  * */
 long Set::firstElem(){
 	//TODO
-	return 0;
+	return this->numVer > 0 ? this->vertices[0] : -1;
 }
 
 /*
@@ -115,15 +159,24 @@ long Set::firstElem(){
  * */
 long Set::firstElemAfter(long elem){
 	//TODO
-	return 0;
+	int ind = -1;
+	for (int i = elem + 1; i < this->numVer; i++)
+		if (this->vertices[i] == 1){
+			ind = i;
+			break;
+		}
+	return ind;
 }
 
 /*
  * Conta o numero de elementos
  * */
 long Set::count(){
-	//TODO
-	return 0;
+	int n = 0;
+	for (int i = 0; i < this->numVer; i++)
+		if (this->vertices[i] == 1)
+			n++;
+	return n;
 }
 
 /*
@@ -131,7 +184,7 @@ long Set::count(){
  * */
 bool Set::isEmpty(){
 	//TODO
-	return 0;
+	return this->count() == 0 ? true : false;
 }
 
 /*
@@ -139,7 +192,10 @@ bool Set::isEmpty(){
  * */
 bool Set::isIntersEmpty(Set* s){
 	//TODO
-	return 0;
+	for (int i = 0; i < this->numVer; i++)
+		if (this->vertices[i] == 1 && s->vertices[i] == 1)
+			return false;
+	return true;
 }
 
 /*
@@ -148,7 +204,7 @@ bool Set::isIntersEmpty(Set* s){
  * */
 bool Set::isSubtEmpty(Set* s){
 	//TODO
-	return 0;
+	return this->isEqual(s) == true ? true: false;
 }
 
 /*
@@ -156,4 +212,13 @@ bool Set::isSubtEmpty(Set* s){
  * */
 void Set::print(){
 	//TODO
+	if (this->numVer == 0 ){
+		printf("O conjunto não possui nenhum elemento!\n");
+		return;
+	}
+	for (int i = 0; i < this->numVer; i++)
+	{
+		printf("%d ",this->vertices[i]);
+	}
+		printf("\n");
 }

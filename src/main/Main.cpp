@@ -10,6 +10,8 @@
 #include "../tools/Timer.h"
 #include "Reader.h"
 #include <cstdio>
+#include <stdlib.h>
+#include <stdio.h>
 
 
 int main(int argc, char **argv){
@@ -26,9 +28,13 @@ int main(int argc, char **argv){
 	Graph* h;
 	Graph* g = myReader.read(fin);
 
-	g->print();
+	Set* s = new Set(10);
+	s->print();
+	s->removeAll();
+	s->print();
+	//g->print();
 
-	printf("OK!\n");
+	printf("OKAY!\n");
 
 	return 0;
 }

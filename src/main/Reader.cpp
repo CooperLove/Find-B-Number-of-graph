@@ -15,6 +15,7 @@ Reader::~Reader(){}
 
 Graph* Reader::read(FILE* dimacs){
 	//TODO
+	return NULL;
 }
 
 
