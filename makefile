@@ -8,4 +8,4 @@ tool:
 		
 mainex: 
 	g++ -c -Wextra -ansi -O3 -funroll-all-loops src/main/Reader.cpp -o lib/reader.o
-	g++ -Wextra -ansi -O3 -funroll-all-loops lib/reader.o lib/set.o lib/graph.o main/Main.cpp -o bin/main
+	g++ -Wextra -ansi -O3 -funroll-all-loops lib/reader.o lib/set.o lib/graph.o src/main/Main.cpp -o bin/main
