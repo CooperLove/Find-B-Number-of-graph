@@ -44,6 +44,9 @@ int main(int argc, char **argv){
 
 	printf("OKAY!\n");
 
+	fclose(fin);
+	fclose(fout);
+
 	return 0;
 }
 
