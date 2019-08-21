@@ -6,6 +6,7 @@
  */
 
 #include "Graph.h"
+#include <cstdlib>
 
 // cria um grafo vazio, necessário para alguns métodos.
 Graph::Graph(){
@@ -17,6 +18,13 @@ Graph::Graph(){
  */
 Graph::Graph(long n){
 	//TODO
+	this->neighbors = new Set[n];
+	for (int i = 0; i < n; i++)
+	{
+		Set* s = new Set();
+		this->neighbors[i] = *s;
+	}
+	this->n = n;
 }
 
 /*
@@ -32,7 +40,7 @@ Graph::~Graph(){
  */
 long Graph::sizeE(){
 	//TODO
-	return 0;
+	return this->m;
 }
 
 /*
@@ -40,28 +48,32 @@ long Graph::sizeE(){
  */
 long Graph::sizeV(){
 	//TODO
-	return 0;
+	return this->m;
 }
 
 /*
  * Adiciona uma arestas entre os vértices u e v
  */
-void Graph::addEdge(long v, long u){
+void Graph::addEdge(long u, long v){
 	//TODO
+	this->neighbors[u].add(v);
 }
 
 /*
  * Remove a aresta entre v e u
  */
-void Graph::removeEdge(long v, long u){
+void Graph::removeEdge(long u, long v){
 	//TODO
+	this->neighbors[u].remove(v);
 }
 
 /*
  * Verifica se existe a aresta entre v e u
  *  */
-bool Graph::hasEdge(long v, long u){
+bool Graph::hasEdge(long u, long v){
 	//TODO
+	//return this->neighbors[u].vertices[v] == 1 ? true : false;
+	return this->neighbors[u].isIn(v);
 }
 
 /*
@@ -69,7 +81,7 @@ bool Graph::hasEdge(long v, long u){
  */
 Set* Graph::getNeig(long v){
 	//TODO
-	return NULL;
+	return &this->neighbors[v];
 }
 
 /*
@@ -77,7 +89,11 @@ Set* Graph::getNeig(long v){
  */
 Set* Graph::getAntiNeig(long v){
 	//TODO
-	return NULL;
+	// Set* s = new Set(this->n);
+	// for (int i = 0; i < this->n; i++)
+	// 	if (this->neighbors[v].vertices[i] == 0)
+	// 		s->vertices[i] = 1;
+	return this->neighbors[v].complement();
 }
 
 /*
@@ -85,6 +101,7 @@ Set* Graph::getAntiNeig(long v){
  */
 long Graph::degree(long v){
 	//TODO
+	return this->neighbors[v].count();
 }
 
 /**
@@ -93,6 +110,17 @@ long Graph::degree(long v){
  * */
 Graph* Graph::copy(){
 	//TODO
+	Graph* g = new Graph();
+	g->neighbors = new Set[this->n];
+	for (int i = 0; i < n; i++)
+		g->neighbors[i].numVer = 0;
+	
+	for (int i = 0; i < n; i++)
+		g->neighbors[i] = this->neighbors[i];
+	g->m = this->m;
+	g->n = this->n;
+	
+	return g;
 }
 
 /*
@@ -100,4 +128,34 @@ Graph* Graph::copy(){
  * */
 void Graph::print(){
 	//TODO
+	for (int i = 0; i < n; i++)
+	{
+		if (this->neighbors[i].numVer != 0) 
+				this->neighbors[i].print();
+	}
+	
 }
+
+void Graph::AllocNeigh (){
+	for (int i = 0; i < n; i++){
+		Set* s = new Set(n);
+		this->neighbors[i] = *s;
+	}
+}
+
+void Graph::SetN (int num){
+	this->n = num;
+}
+void Graph::SetM (int num){
+	this->m = num;
+}
+int Graph::GetN (){
+	return (int) this->n;
+}
+int Graph::GetM (){
+	return (int) this->m;
+}
+Set* Graph::GetNeighbors (){
+	return this->neighbors;
+}
+

@@ -7,7 +7,7 @@
 
 #include "Enumeration.h"
 
-Enumeration::Enumeration() {
+Enumeration::Enumeration(Graph* g, int* order) {
 	// TODO Auto-generated constructor stub
 
 }

@@ -8,20 +8,23 @@
 #ifndef SRC_SOLVER_VERTEXORDER_H_
 #define SRC_SOLVER_VERTEXORDER_H_
 
-#include "Graph.h"
+#include "../tools/Graph.h"
 
 class VertexOrder {
+	Graph* g;
 public:
 	VertexOrder(Graph* g);
 
 	virtual ~VertexOrder();
 
-	int* degreeMax();
+	int* degreeMax ();
 
-	int* degreeMin();
+	int* degreeMin ();
 
-	int* rand();
+	int* rand ();
 
+private:
+	void Swap (int*, int*);
 };
 
 #endif /* SRC_SOLVER_VERTEXORDER_H_ */

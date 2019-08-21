@@ -8,7 +8,7 @@
 #ifndef SRC_SOLVER_ENUMERATION_H_
 #define SRC_SOLVER_ENUMERATION_H_
 
-#include "Graph.h"
+#include "../tools/Graph.h"
 #include "TreeNode.h"
 
 class Enumeration {

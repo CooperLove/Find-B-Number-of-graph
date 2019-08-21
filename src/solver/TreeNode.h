@@ -8,40 +8,48 @@
 #ifndef SRC_SOLVER_TREENODE_H_
 #define SRC_SOLVER_TREENODE_H_
 
-#include "Graph.h"
+#include "../tools/Graph.h"
 
 class TreeNode {
+	private:
+		int* Cand;
+		int* currCand;
+		int* Bvts;
+		int numcand;
+		int sizeB;
+		int posBvt;
 
-	int* Cand;
-	int* Bvts;
-	int numcand;
-	int sizeB;
+		bool genL;
+		bool genR;
 
-	bool genL;
-	bool genR;
+		Graph* g;
 
-public:
-	TreeNode(Graph* G, int* order);
+	public:
+		TreeNode(TreeNode* t, bool dir);
 
-	virtual ~TreeNode();
+		TreeNode(Graph* G, int* order);
 
-	TreeNode* genLeft();
+		virtual ~TreeNode();
 
-	TreeNode* genRight();
+		TreeNode* genLeft();
 
-	bool hasLeft();
+		TreeNode* genRight();
 
-	bool hasRight();
+		bool hasLeft();
 
-	bool hasChild();
+		bool hasRight();
 
-	int* getCand();
+		bool hasChild();
 
-	int* getBvertices();
+		int* getCand();
 
-	int getBNum();
+		int* getBvertices();
 
-	int getCanNum();
+		int getBNum();
+
+		int getCanNum();
+		void print ();
+	protected:
 };
 
 #endif /* SRC_SOLVER_TREENODE_H_ */

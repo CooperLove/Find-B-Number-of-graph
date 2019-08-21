@@ -17,7 +17,7 @@ private:
 	long n; // numero de vertices
 	long m; // numero de arestas
 
-	Set* edges; //a matrix de adjacencias, cada vértice tem sei próprio Set
+	Set* neighbors; //a matrix de adjacencias, cada vértice tem sei próprio Set
 
 	Graph();// cria um grafo vazio, necessário para alguns métodos.
 
@@ -85,6 +85,17 @@ public:
 	 * print
 	 * */
 	void print();
+
+	/*
+	 * Aloca o array de vizinhos para todos os vértices
+	 * */
+	void AllocNeigh ();
+
+	void SetN (int);
+	void SetM (int);
+	int GetN ();
+	int GetM ();
+	Set* GetNeighbors ();
 };
 
 #endif /* SRC_TOOLS_GRAPH_H_ */
