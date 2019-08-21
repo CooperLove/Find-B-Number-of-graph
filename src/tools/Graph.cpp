@@ -54,25 +54,26 @@ long Graph::sizeV(){
 /*
  * Adiciona uma arestas entre os vértices u e v
  */
-void Graph::addEdge(long v, long u){
+void Graph::addEdge(long u, long v){
 	//TODO
-	this->neighbors[u].vertices[v] = 1;
+	this->neighbors[u].add(v);
 }
 
 /*
  * Remove a aresta entre v e u
  */
-void Graph::removeEdge(long v, long u){
+void Graph::removeEdge(long u, long v){
 	//TODO
-	this->neighbors[u].vertices[v] = 0;
+	this->neighbors[u].remove(v);
 }
 
 /*
  * Verifica se existe a aresta entre v e u
  *  */
-bool Graph::hasEdge(long v, long u){
+bool Graph::hasEdge(long u, long v){
 	//TODO
-	return this->neighbors[u].vertices[v] == 1 ? true : false;
+	//return this->neighbors[u].vertices[v] == 1 ? true : false;
+	return this->neighbors[u].isIn(v);
 }
 
 /*
@@ -88,11 +89,11 @@ Set* Graph::getNeig(long v){
  */
 Set* Graph::getAntiNeig(long v){
 	//TODO
-	Set* s = new Set(this->n);
-	for (int i = 0; i < this->n; i++)
-		if (this->neighbors[v].vertices[i] == 0)
-			s->vertices[i] = 1;
-	return s;
+	// Set* s = new Set(this->n);
+	// for (int i = 0; i < this->n; i++)
+	// 	if (this->neighbors[v].vertices[i] == 0)
+	// 		s->vertices[i] = 1;
+	return this->neighbors[v].complement();
 }
 
 /*
@@ -148,11 +149,13 @@ void Graph::SetN (int num){
 void Graph::SetM (int num){
 	this->m = num;
 }
-
 int Graph::GetN (){
-	return this->n;
+	return (int) this->n;
 }
 int Graph::GetM (){
-	return this->m;
+	return (int) this->m;
+}
+Set* Graph::GetNeighbors (){
+	return this->neighbors;
 }
 

@@ -96,7 +96,10 @@ void Set::inter(Set* s){
  * */
 Set* Set::complement(){
 	//TODO
-	return NULL;
+	Set* s = new Set();
+	for (int i = 0; i < this->numVer; i++)
+		s[i] = this->vertices[i] == 0 ? 1 : 0;
+	return s;
 }
 
 /**
@@ -218,8 +221,8 @@ void Set::print(){
 		return;
 	}
 	for (int i = 0; i < this->numVer; i++)
-	{
 		printf("%d ",this->vertices[i]);
-	}
-		printf("\n");
+	
+	printf (" => %d", this->count());
+	printf("\n");
 }

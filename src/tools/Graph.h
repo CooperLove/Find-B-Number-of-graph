@@ -95,6 +95,7 @@ public:
 	void SetM (int);
 	int GetN ();
 	int GetM ();
+	Set* GetNeighbors ();
 };
 
 #endif /* SRC_TOOLS_GRAPH_H_ */

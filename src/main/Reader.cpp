@@ -25,9 +25,9 @@ Graph* Reader::read(FILE* dimacs){
 	g->SetM (E);
 	g->AllocNeigh ();
 	fscanf(dimacs, "%c %d %d\n", &end, &n1, &n2);
-		printf ("First: %c %d %d\n",end,n1,n2);
+		//printf ("First: %c %d %d\n",end,n1,n2);
 	while(fscanf(dimacs, "%c %d %d\n", &end, &n1, &n2) != EOF){
-		printf ("While: %c %d %d\n",end,n1,n2);
+		//printf ("While: %c %d %d\n",end,n1,n2);
 		g->getNeig (n1 -1)->vertices[n2 - 1] = 1;
     }
 	printf ("Grafo OKAY!\n");
