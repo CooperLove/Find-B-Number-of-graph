@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+TreeNode::TreeNode(){}
 
 TreeNode::TreeNode(TreeNode* t, bool dir){
 	this->g                        = t->g;
@@ -19,6 +20,7 @@ TreeNode::TreeNode(TreeNode* t, bool dir){
 	this->posBvt                   = t->posBvt + 1;
 	this->Bvts[t->currCand[0] - 1] = dir ? 0 : 1;        //printf ("04 OKAY!\n");
 	int* newCand                   = new int[t->numcand - 1];
+	this->posCand                  = this->posCand + 1 > this->g->GetN() ? this->posCand + 1 : this->posCand;
 	//printf ("05 OKAY!\n");
 
 	//printf ("%d - %d!\n",this->posBvt, t->g->GetN());
@@ -37,6 +39,7 @@ TreeNode::TreeNode (Graph* G, int* order) {
 	this->currCand = order;
 	this->posBvt   = 0;
 	this->Bvts     = new int[this->numcand];
+	this->posCand  = 0;
 
 	for (int i = 0; i < this->numcand; i++)
 		this->Bvts[i] = 0;
@@ -49,12 +52,13 @@ TreeNode::~TreeNode() {
 
 TreeNode* TreeNode::genLeft(){
 	TreeNode* t = new TreeNode(this, false);
-
+	this->genL = true;
 	return t;
 }
 
 TreeNode* TreeNode::genRight(){
 	TreeNode* t = new TreeNode(this, true);
+	this->genR = true;
 	return t;
 }
 
@@ -87,7 +91,7 @@ int TreeNode::getCanNum(){
 }
 
 void TreeNode::print (){
-	printf ("B vertices atuais => ",this->numcand);
+	printf ("\tB vertices atuais => ",this->numcand);
 	for (int i = 0; i < this->g->GetN(); i++)
 		printf ("%d ", this->Bvts[i]);
 	printf ("     ");

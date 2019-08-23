@@ -14,10 +14,13 @@
 
 class Enumeration {
 
-	TreeNode** Q;
 	int bestsol;
 	Colorable* color;
 
+	Graph* g;
+	int* order;
+
+	TreeNode* stack[];
 public:
 	Enumeration(Graph* g, int* order, Colorable* c);
 
@@ -28,6 +31,10 @@ public:
 	int solveMax();
 
 	void fullEnum();
+
+	void fullEnum(TreeNode* root);
+
+	TreeNode* GetRoot();
 };
 
 #endif /* SRC_SOLVER_ENUMERATION_H_ */

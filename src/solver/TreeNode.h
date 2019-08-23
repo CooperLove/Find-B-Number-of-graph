@@ -18,6 +18,7 @@ class TreeNode {
 		int numcand;
 		int sizeB;
 		int posBvt;
+		int posCand;
 
 		bool genL;
 		bool genR;
@@ -25,6 +26,8 @@ class TreeNode {
 		Graph* g;
 
 	public:
+		TreeNode();
+
 		TreeNode(TreeNode* t, bool dir);
 
 		TreeNode(Graph* G, int* order);
