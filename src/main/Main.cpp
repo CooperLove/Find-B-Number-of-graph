@@ -47,6 +47,13 @@ int main(int argc, char **argv){
 	g->print();
 	int* v = order->degreeMax();
 	int* v2 = v;
+	Colorable* c = new Colorable();
+	Enumeration* en = new Enumeration(g, v2, c);
+	printf ("Begin enumeration!\n");
+	en->buildRoot();
+	en->fullEnum();
+	printf ("End enumeration!\n");
+
 	printf ("Max degree\n\t");
 	for (int i = 0; i < g->GetN(); i++)
 		printf ("%d ",v[i]);
