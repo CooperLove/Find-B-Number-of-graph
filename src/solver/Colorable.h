@@ -8,7 +8,19 @@
 #ifndef SRC_SOLVER_COLORABLE_H_
 #define SRC_SOLVER_COLORABLE_H_
 
+#include <ilcplex/cplex.h>
+#include <stdlib.h>
+#include <string.h>
+
 class Colorable {
+private:
+
+	//the cplex enviroment
+	CPXENVptr env = NULL;
+
+	//the cplex problem
+	CPXLPptr lp = NULL;
+
 public:
 	Colorable();
 
