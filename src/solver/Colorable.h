@@ -11,6 +11,11 @@
 #include <ilcplex/cplex.h>
 #include <stdlib.h>
 #include <string.h>
+#include "../tools/Graph.h"
+
+/*
+	max E 
+*/
 
 class Colorable {
 private:
@@ -21,6 +26,16 @@ private:
 	//the cplex problem
 	CPXLPptr lp = NULL;
 
+	CPXFILEptr logfile = NULL;
+
+	FILE *out;
+
+	int **variavelX;
+
+	int cont;
+
+	Graph* g;
+
 public:
 	Colorable();
 
@@ -28,7 +43,25 @@ public:
 
 	void build(int* bvert, int bnum);
 
+	void startCplex (char arq[], int*);
+
+	void solveProblem (char arq1[], char arq2[]);
+
+	void carregarVariaveis();
+
+	void addRestricoes();
+
+	void addRestricao01 (int v);
+
+	void addRestricao02 (int, int, int);
+
+	void addRestricao03 (int, int);
+
+	void addRestricao04 (int, int);
+
 	bool solve();
+
+	void SetG(Graph* g);
 };
 
 #endif /* SRC_SOLVER_COLORABLE_H_ */

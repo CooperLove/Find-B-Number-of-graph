@@ -91,7 +91,7 @@ int TreeNode::getCanNum(){
 }
 
 void TreeNode::print (){
-	printf ("\tB vertices atuais => ",this->numcand);
+	printf ("\tB vertices atuais => ");
 	for (int i = 0; i < this->g->GetN(); i++)
 		printf ("%d ", this->Bvts[i]);
 	printf ("     ");

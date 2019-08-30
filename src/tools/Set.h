@@ -54,7 +54,7 @@ public:
 	/*
 	 * Faz a interseção do conjunto com o conjunto passado de argumento
 	 * */
-	void inter(Set* s);
+	Set* inter(Set* s);
 
 	/*
 	 * Complemento do conjunto em relação ao tamanho

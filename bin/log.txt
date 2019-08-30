@@ -1,0 +1,816 @@
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 6.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 35 columns.
+Reduced MIP has 1 rows, 1 columns, and 6 nonzeros.
+Reduced MIP has 1 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 5.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.02 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.02 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.02 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.02 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.00 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.02 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.02 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 78 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.03 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.04 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.04 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 78 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.03 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (0.04 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (0.04 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 78 rows and 36 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.03 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (0.04 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (0.04 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 3.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 75 rows and 33 columns.
+Aggregator did 3 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 3.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 3.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 430 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.19 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.20 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.20 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 75 rows and 33 columns.
+Aggregator did 3 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.06 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 75 rows and 33 columns.
+Aggregator did 3 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 75 rows and 33 columns.
+Aggregator did 3 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.05 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 2.000000 after 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 2.000000 after 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c16':  0 <= -1.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 34 columns.
+Reduced MIP has 1 rows, 2 columns, and 3 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 34 columns.
+Reduced MIP has 1 rows, 2 columns, and 3 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Found incumbent of value 3.000000 after 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 34 columns.
+Reduced MIP has 1 rows, 2 columns, and 3 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 70 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.05 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 70 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 70 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.05 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 70 rows and 34 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 3.000000 after 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 4 times.
+MIP Presolve eliminated 71 rows and 29 columns.
+MIP Presolve modified 1 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.12 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 5 rows and 34 columns.
+Reduced MIP has 1 rows, 2 columns, and 3 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing fixed 2 vars, tightened 0 bounds.
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 2 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 106 rows and 34 columns.
+MIP Presolve modified 42 coefficients.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.14 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.14 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.14 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 116 rows and 32 columns.
+MIP Presolve modified 34 coefficients.
+Aggregator did 4 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.15 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.16 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.16 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 118 rows and 34 columns.
+MIP Presolve modified 44 coefficients.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.14 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.15 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.15 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 118 rows and 34 columns.
+MIP Presolve modified 44 coefficients.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.14 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.15 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.15 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 118 rows and 34 columns.
+MIP Presolve modified 44 coefficients.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.14 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.15 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.15 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 3 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 1 time.
+MIP Presolve eliminated 126 rows and 36 columns.
+MIP Presolve modified 12 coefficients.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.09 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.01 sec. (0.10 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.01 sec. (0.10 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 3 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 3 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 3 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 52 coefficients.
+Aggregator did 5 substitutions.
+Reduced MIP has 2 rows, 2 columns, and 5 nonzeros.
+Reduced MIP has 2 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Row 'c1' infeasible, all entries at implied bounds.
+Presolve time = 0.00 sec. (0.10 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.11 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.11 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 1.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 5 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 51 coefficients.
+Aggregator did 7 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.22 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.23 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.23 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Infeasibility row 'c1':  0  = 1.
+Presolve time = 0.00 sec. (0.03 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 1.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 5 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 51 coefficients.
+Aggregator did 7 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.22 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.23 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.23 ticks)
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Tried aggregator 1 time.
+Infeasibility row 'c6':  0  = 1.
+Presolve time = 0.00 sec. (0.12 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.13 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.13 ticks)
+CPLEX Error  1217: No solution exists.
+CPLEX Error  1217: No solution exists.
+Default variable names x1, x2 ... being created.
+Default row names c1, c2 ... being created.
+Found incumbent of value 1.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 5 times.
+MIP Presolve eliminated 119 rows and 29 columns.
+MIP Presolve modified 51 coefficients.
+Aggregator did 7 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.22 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.23 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.23 ticks)

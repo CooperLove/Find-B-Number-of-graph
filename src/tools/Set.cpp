@@ -73,9 +73,8 @@ void Set::removeAll(){
  * */
 bool Set::isIn(long elem){
 	//TODO
-	for (int i = 0; i < this->numVer; i++)
-		if (this->vertices[i] == elem)
-			return true;
+	if (this->vertices[elem] == 1)
+		return true;
 	
 	return false;
 }
@@ -83,12 +82,13 @@ bool Set::isIn(long elem){
 /*
  * Faz a interseção do conjunto com o conjunto passado de argumento
  * */
-void Set::inter(Set* s){
+Set* Set::inter(Set* s){
 	//TODO
 	Set* q = new Set(this->numVer);
 	for (int i = 0; i < this->numVer ; i++)
 		if (this->vertices[i] == 1 && s->vertices[i] == 1)
 			q->vertices[i] = 1;
+	return s;
 }
 
 /*
@@ -96,9 +96,12 @@ void Set::inter(Set* s){
  * */
 Set* Set::complement(){
 	//TODO
-	Set* s = new Set();
+	Set* s = new Set(this->numVer);
+	//printf ("\t");this->print();
 	for (int i = 0; i < this->numVer; i++)
-		s[i] = this->vertices[i] == 0 ? 1 : 0;
+		s->vertices[i] = this->vertices[i] == 0 ? 1 : 0;
+	
+	//printf ("\t");s->print();
 	return s;
 }
 
@@ -109,7 +112,7 @@ Set* Set::copy(){
 	//TODO
 	Set* s = new Set(this->numVer);
 	for (int i = 0; i < this->numVer; i++)
-		s[i] = this->vertices[i];
+		s->vertices[i] = this->vertices[i];
 	
 	return s;
 }
@@ -223,6 +226,6 @@ void Set::print(){
 	for (int i = 0; i < this->numVer; i++)
 		printf("%d ",this->vertices[i]);
 	
-	printf (" => %d", this->count());
+	printf (" => %lu", this->count());
 	printf("\n");
 }

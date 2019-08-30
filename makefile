@@ -4,7 +4,7 @@ INCCPLEX= -I/opt/ibm/ILOG/CPLEX_Studio1251/cplex/include/
 #folder lib
 LIBCPLEX= -L/opt/ibm/ILOG/CPLEX_Studio1251/cplex/lib/x86-64_sles10_4.1/static_pic/ -m64 -lcplex -lm -lpthread
 #folder concert
-CONCPLEX= -I/opt/ibm/ILOG/CPLEX_Studio1251/concert/include/ 
+CONCPLEX= -I/opt/ibm/ILOG/CPLEX_Studio1251/concert/include/
 
 all: solver tool mainex
 
@@ -21,4 +21,4 @@ tool:
 		
 mainex: 
 	g++ -std=gnu++11 -c -Wextra -ansi -O3 -funroll-all-loops src/main/Reader.cpp -o lib/reader.o
-	g++ -std=gnu++11 -Wextra -ansi -O3 -funroll-all-loops -DIL_STD $(INCCPLEX) $(CONCPLEX) lib/reader.o lib/set.o lib/graph.o lib/col.o lib/enum.o lib/tnode.o lib/vord.o src/main/Main.cpp -o bin/main $(LIBCPLEX)
+	g++ -std=gnu++11 -Wextra -ansi -O3 -funroll-all-loops -DIL_STD $(INCCPLEX) $(CONCPLEX) lib/reader.o lib/set.o lib/graph.o lib/col.o lib/enum.o lib/tnode.o lib/vord.o src/main/Main.cpp -o bin/main2 $(LIBCPLEX)
