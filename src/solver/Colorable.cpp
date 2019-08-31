@@ -106,46 +106,45 @@ void Colorable::addRestricoes(){
 	int n = this->g->GetN();
 	for (int v = 0; v < n; v++)
 		addRestricao01 (v);
-	
-	printf(" fon\n");
-	for (int v = 0; v < n; v++)
-		for (int u = 0; u < n; u++)
-			for (int w = 0; w < n; w++)
-				if (this->g->hasEdge(u,w)) 
-					addRestricao02 (u,w,v);
-	for (int u = 0; u < n; u++)
-		for (int v = 0; v < n; v++)
-			addRestricao03(u, v);
 	for (int v = 0; v < n; v++)
 		for (int u = 0; u < n; u++){
-			Set* s = this->g->getNeig(v);
-			if (s->isIn(u))
-				addRestricao04(v, u);
+			Set* s = this->g->getAntiNeig(u);
+			for (int w = 0; w < n; w++){
+				if (s->isIn(v) && s->isIn(w))
+					addRestricao02 (u,w,v);
+			}
 		}
-	
+	for (int u = 0; u < n; u++)
+		for (int v = 0; v < n; v++)
+			if (!this-g->hasEdge(u,v))
+				addRestricao03(u, v);
+	for (int u = 0; u < n; u++){
+		Set* s = this->g->getAntiNeig(u);
+		for (int v = 0; v < n;v++){
+			if (s->isIn(v))
+				addRestricao04(u, v);
+		}
+	}
 }
 
-void Colorable::addRestricao01 (int v){
+void Colorable::addRestricao01 (int u){
       
     //printf("Rest u =%d v= %d\n", u, v);
-	Set* s = this->g->getAntiNeig(v);
+	Set* s = this->g->getNeig(u);
+	s->add(u);
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
 	double coef[tam];
 	int col[tam];// col -id 
     int c = 0;
-    
-	
-	col[contador] = variavelX[v][v];
-	coef[contador] = 1.0;
-	contador++;
+
 	s->print();
-	for (int i = 0; i < n; i++)
+	for (int v = 0; v < n; v++)
 	{
-		if (s->isIn(i) && i != v){
-			printf("O vertice %d esta em S\n",i);
-			col[contador] = variavelX[i][v];
+		if (s->isIn(v)){
+			printf("O vertice %d esta em S\n",v);
+			col[contador] = variavelX[v][u];
 			coef[contador] = 1.0;
 			contador++;
 		}
@@ -168,15 +167,15 @@ void Colorable::addRestricao02 (int u, int w, int v){
     int c = 0;
     
 	
-	col[contador] = variavelX[v][u];
+	col[contador] = variavelX[u][v];
 	coef[contador] = 1.0;
 	contador++;
 
-	col[contador] = variavelX[v][w];
+	col[contador] = variavelX[u][w];
 	coef[contador] = 1.0;
 	contador++;
 
-	col[contador] = variavelX[v][v];
+	col[contador] = variavelX[u][u];
 	coef[contador] = -1.0;
 	contador++;
 
@@ -209,7 +208,7 @@ void Colorable::addRestricao03 (int u, int v){
 		}
 	}
 	
-	col[contador] = variavelX[u][v];
+	col[contador] = variavelX[u][u];
 	coef[contador] = -1.0;
 	contador++;
 
@@ -227,7 +226,7 @@ void Colorable::addRestricao03 (int u, int v){
     
 }
 
-void Colorable::addRestricao04 (int v, int u){
+void Colorable::addRestricao04 (int u, int v){
       int  contador =0;
 	int n = this->g->GetN();
 	int tam = n;
@@ -235,11 +234,11 @@ void Colorable::addRestricao04 (int v, int u){
 	int col[tam];// col -id 
     int c = 0;
 	
-	col[contador] = variavelX[v][u];
+	col[contador] = variavelX[u][v];
 	coef[contador] = 1.0;
 	contador++;
 
-	col[contador] = variavelX[v][v];
+	col[contador] = variavelX[u][u];
 	coef[contador] = -1.0;
 	contador++;
 
