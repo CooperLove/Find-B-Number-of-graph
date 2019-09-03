@@ -18,11 +18,11 @@ class Enumeration {
 	Colorable* color;
 
 	Graph* g;
-	int* order;
+	char* order;
 
 	TreeNode* stack[];
 public:
-	Enumeration(Graph* g, int* order, Colorable* c);
+	Enumeration(Graph* g, char* order, Colorable* c);
 
 	virtual ~Enumeration();
 

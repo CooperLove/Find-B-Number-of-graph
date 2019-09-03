@@ -17,14 +17,14 @@ public:
 
 	virtual ~VertexOrder();
 
-	int* degreeMax ();
+	char* degreeMax ();
 
-	int* degreeMin ();
+	char* degreeMin ();
 
-	int* rand ();
+	char* rand ();
 
 private:
-	void Swap (int*, int*);
+	void Swap (char*, char*);
 };
 
 #endif /* SRC_SOLVER_VERTEXORDER_H_ */

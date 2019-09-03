@@ -12,13 +12,13 @@
 
 class TreeNode {
 	private:
-		int* Cand;
-		int* currCand;
-		int* Bvts;
-		int numcand;
-		int sizeB;
-		int posBvt;
-		int posCand;
+		char* Cand;
+		char* currCand;
+		char* Bvts;
+		short numcand;
+		short sizeB;
+		short posBvt;
+		short posCand;
 
 		bool genL;
 		bool genR;
@@ -30,7 +30,7 @@ class TreeNode {
 
 		TreeNode(TreeNode* t, bool dir);
 
-		TreeNode(Graph* G, int* order);
+		TreeNode(Graph* G, char* order);
 
 		virtual ~TreeNode();
 
@@ -44,13 +44,14 @@ class TreeNode {
 
 		bool hasChild();
 
-		int* getCand();
+		char* getCand();
 
-		int* getBvertices();
+		char* getBvertices();
 
-		int getBNum();
+		short getBNum();
 
-		int getCanNum();
+		short getCanNum();
+
 		void print ();
 	protected:
 };

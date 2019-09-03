@@ -11,10 +11,11 @@
 #include <stdio.h>
 #include <math.h>
 
-Enumeration::Enumeration(Graph* g, int* order, Colorable* c) {
+Enumeration::Enumeration(Graph* g, char* order, Colorable* c) {
 	// TODO Auto-generated constructor stub
 	this->g = g;
 	this->order = order;
+	this->color = c;
 }
 
 Enumeration::~Enumeration() {
@@ -43,53 +44,44 @@ void Enumeration::fullEnum(){
 	printf ("Inicio %d => %d\n",nivel, this->g->GetN() - 1);
 	int MAX_NODES = (int) pow (2.0, (float)this->g->GetN());
 	int leaves = 0;
-	while (nodes < MAX_NODES)
+	do
 	{
+		if (nodes > MAX_NODES) break;
 		if (!this->stack[nivel]->hasChild() ){
-			printf ("Nivel %d, %d\n",nivel,leaves+1);
+			//printf ("Nivel %d, %d\n",nivel,leaves+1);
+			printf("\n");
 			this->stack[nivel]->print();
-			nivel--;
-			leaves++;
+			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
+			nivel--; leaves++;
 			continue;
 		}
-		if (nodes > MAX_NODES) break;
 		if (this->stack[nivel]->hasLeft()){
 			TreeNode* t = this->stack[nivel]->genLeft();
-			//printf ("Esq %d ",nivel);
 			this->stack[nivel + 1] = t; 
-			nodes++;
-			nivel++;
-			printf (" <= ");
+			nodes++; nivel++; printf (" <= ");
 			continue;
 		}
 		if (this->stack[nivel]->hasRight()){
 			TreeNode* t = this->stack[nivel]->genRight();
-			//printf ("Esq %d ",nivel);
 			this->stack[nivel + 1] = t; 
-			nodes++;
-			nivel++;
-			printf (" => %d ",nivel);
+			nodes++; nivel++; printf (" => ");
 			continue;
 		}
-		//this->stack[nivel]->print();
 		nivel--;
-	}
+	} while (nivel != 0);
 	printf ("\n\tPrintou %d folhas\n",leaves);
 }
 
 void Enumeration::fullEnum(TreeNode* root){
 	if (!root->hasChild()){
-		//printf ("Folha\n");
 		root->print();
 		return;
 	}
 	if (root->hasLeft()){
-		//printf ("Esq\n");
 		TreeNode* t = root->genLeft();
 		fullEnum(t);
 	}
 	if (root->hasRight()){
-		//printf ("Dir\n");
 		TreeNode* t = root->genRight();
 		fullEnum(t);
 	}

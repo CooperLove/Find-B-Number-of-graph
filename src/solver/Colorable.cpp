@@ -16,31 +16,44 @@ Colorable::~Colorable() {
 	// TODO Auto-generated destructor stub
 }
 
+void Colorable::build (char* bvert, short bnum){
+	char* arq2 = "log.txt";
+	char *arq3 = "arq3.txt";
+	char *arq4 = "arq4.lp";
+
+	this->carregarVariaveis();
+	this->startCplex(arq2, bvert);
+	this->addRestricoes();
+	this->solveProblem(arq3, arq4);
+}
+
 
 void Colorable::carregarVariaveis(){
-
 	int u,v, t;
-	cont = 0;
+	int c = 0;
+	//printf ("Carregando var\n");
 		//variaveis para arestas (Z)
+		//this->g->print();
 		int n = this->g->GetN();
-
+	//	printf ("Tam\n");
 		variavelX = (int**)malloc(n * sizeof(int*));
-       
+		//printf ("Alocação\n");
 		for (u = 0; u < n; u++)
 		{
 			variavelX[u] = (int*)malloc(n * sizeof(int));
 			for(v = 0; v < n; v++)
 			{
-				variavelX[u][v] = cont;
-				cont ++;
+				variavelX[u][v] = c;
+				c ++;
 				//printf("%d ", variavelX[u][v]+1);
 				
 			} //printf("\n");
 		}
-        printf("\nVariavel X: %d\n",cont);  
+        //printf("\nVariavel X: %d\n",cont); 
+		this->cont = c; 
 }
 
-void Colorable::startCplex(char arq[], int* bvert){
+void Colorable::startCplex(char arq[], char* bvert){
 
 	int status = 0;
 	env = CPXopenCPLEX(&status);
@@ -94,10 +107,9 @@ void Colorable::startCplex(char arq[], int* bvert){
 		}
 	}
 	
-
 	//chamadas do CPLEX para adicionar os vetores no modelo - lp
 	status = CPXnewcols (env, lp, contador, obj, lb, ub, type, NULL);
-
+	
 	//só é necessario se for de minimização - max é padrão do cplex
 	CPXchgobjsen(env, lp, CPX_MAX); // CPX_MIN, para o de miminização
 }
@@ -139,11 +151,11 @@ void Colorable::addRestricao01 (int u){
 	int col[tam];// col -id 
     int c = 0;
 
-	s->print();
+	//s->print();
 	for (int v = 0; v < n; v++)
 	{
 		if (s->isIn(v)){
-			printf("O vertice %d esta em S\n",v);
+			//printf("O vertice %d esta em S\n",v);
 			col[contador] = variavelX[v][u];
 			coef[contador] = 1.0;
 			contador++;
@@ -263,19 +275,19 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 	CPXwriteprob (env, lp, arq2, NULL);
 
 	//RESOLVENDO :D :D :D \o \o \o
-	printf("Resolvendo\n");
+	printf("\tResolvendo ==> ");
 	status = CPXmipopt(env,lp);
 
 
 	double value;
 	//recuperando o valor da FO
 	status = CPXgetobjval(env, lp, &value);
-	printf ("status retorno de funcao objetivo: %d\n", status);
+	printf ("Status F.O: %d\t", status);
 
 	double vetor[cont];
 	//recuperando o valor das variáveis
 	status= CPXgetx(env, lp, vetor, 0,cont-1);
-	printf ("status retorno de valor das variaveis: %d\n", status);
+	printf ("Status variaveis: %d\t", status);
     printf("FO = %f\n",value);
 
 	//ESCREVENDO ARQUIVO DE SAIDA
@@ -286,7 +298,7 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 	fprintf(out, "%s", "Valor objetivo = ");
 	fprintf(out, "%f\n\n", value);
 
-	printf("\tAntes\n");
+	//printf("\tAntes\n");
 	for (u=0; u < n ; u++)
 	{
 		for (v=0; v < n ; v++)
@@ -302,7 +314,7 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 			contador++;
 		}
 	}
-	printf("\tDepois\n");
+//	printf("\tDepois\n");
 	fclose(out);
 }
 

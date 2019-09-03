@@ -2,7 +2,7 @@
 \Problem name: Formulacao EEEE :D
 
 Maximize
- obj: x8 + x22 + x36
+ obj: x1
 Subject To
  c1:  x1 + x7 + x25 + x31  = 1
  c2:  x2 + x8 + x14 + x20  = 1

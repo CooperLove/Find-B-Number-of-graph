@@ -41,9 +41,9 @@ public:
 
 	virtual ~Colorable();
 
-	void build(int* bvert, int bnum);
+	void build(char* bvert, short bnum);
 
-	void startCplex (char arq[], int*);
+	void startCplex (char arq[], char*);
 
 	void solveProblem (char arq1[], char arq2[]);
 

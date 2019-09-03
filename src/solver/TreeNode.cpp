@@ -19,7 +19,7 @@ TreeNode::TreeNode(TreeNode* t, bool dir){
 	this->Bvts                     = t->Bvts;            //printf ("03 OKAY!\n");
 	this->posBvt                   = t->posBvt + 1;
 	this->Bvts[t->currCand[0] - 1] = dir ? 0 : 1;        //printf ("04 OKAY!\n");
-	int* newCand                   = new int[t->numcand - 1];
+	char* newCand                   = new char[t->numcand - 1];
 	this->posCand                  = this->posCand + 1 > this->g->GetN() ? this->posCand + 1 : this->posCand;
 	//printf ("05 OKAY!\n");
 
@@ -31,14 +31,14 @@ TreeNode::TreeNode(TreeNode* t, bool dir){
 	
 }
 
-TreeNode::TreeNode (Graph* G, int* order) {
+TreeNode::TreeNode (Graph* G, char* order) {
 	// TODO Auto-generated constructor stub
 	this->g        = G;
 	this->numcand  = G->GetN();
 	this->Cand     = order;
 	this->currCand = order;
 	this->posBvt   = 0;
-	this->Bvts     = new int[this->numcand];
+	this->Bvts     = new char[this->numcand];
 	this->posCand  = 0;
 
 	for (int i = 0; i < this->numcand; i++)
@@ -74,19 +74,24 @@ bool TreeNode::hasChild(){
 	return this->numcand == 0 ? false : true;
 }
 
-int* TreeNode::getCand(){
+char* TreeNode::getCand(){
 	return this->Cand;
 }
 
-int* TreeNode::getBvertices(){
+char* TreeNode::getBvertices(){
   	return this->Bvts;
 }
 
-int TreeNode::getBNum(){
+short TreeNode::getBNum(){
+	short a = 0;
+	for (size_t i = 0; i < this->g->GetN(); i++)
+		if (this->Bvts[i] == 1)
+			a++;
+	this->sizeB = a;
 	return this->sizeB;
 }
 
-int TreeNode::getCanNum(){
+short TreeNode::getCanNum(){
 	return this->numcand;
 }
 
