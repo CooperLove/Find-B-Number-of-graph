@@ -7,6 +7,9 @@
 
 #include "Graph.h"
 #include <cstdlib>
+#include <cstdio>
+#include <stdlib.h>
+#include <stdio.h>
 
 // cria um grafo vazio, necessário para alguns métodos.
 Graph::Graph(){
@@ -136,6 +139,47 @@ void Graph::print(){
 	
 }
 
+void Graph::BuildMatrix (){
+	int n = this->GetN();
+	this->matIsIn = (char**)malloc(n * sizeof(char*));
+	printf("Matrix\n");
+	for (size_t i = 0; i < n; i++)
+		this->matIsIn[i] = (char*)malloc(n * sizeof(char));
+	
+	for (size_t u = 0; u < n ; u++){
+		Set* neighU = this->getNeig(u);	
+		Set* neighV = this->getNeig(u+1);
+		this->matIsIn[u][u] = 1;
+		this->matIsIn[u][u+1] = 1;
+		neighU->print();
+		neighV->print();
+		printf("\n");
+		for (size_t v = 0; v < n; v++)
+		{
+			if (neighU->vertices[v] == 1 && neighV->vertices[v] != 1)
+				this->matIsIn[u][u+1] = 0;
+		}
+	}
+	printf("\nMatrix\n");
+	for (int u = 0; u < n; u++){
+		for (int v = 0; v < n; v++)
+			printf("%d ",this->matIsIn[u][v]);
+		printf("\n");
+	}
+	printf("\n");
+}
+
+void Graph::ArrayDegree(){
+	int n = this->GetN();
+	this->vertDegrees = (char*)malloc(n * sizeof(char));
+	printf("Array degress\n");
+	for (int i = 0; i < n; i++){
+		this->vertDegrees[i] = this->neighbors[i].count();
+		printf("%d ",this->vertDegrees[i]);
+	}
+	printf("\n");
+}
+
 void Graph::AllocNeigh (){
 	for (int i = 0; i < n; i++){
 		Set* s = new Set(n);
@@ -159,3 +203,6 @@ Set* Graph::GetNeighbors (){
 	return this->neighbors;
 }
 
+char** Graph::GetMatrix(){
+	return this->matIsIn;
+}

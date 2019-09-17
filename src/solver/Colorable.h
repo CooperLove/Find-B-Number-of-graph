@@ -52,6 +52,8 @@ public:
 	void addRestricoes();
 
 	void addRestricao01 (int v);
+	
+	void addRestricao01_1 (int);
 
 	void addRestricao02 (int, int, int);
 

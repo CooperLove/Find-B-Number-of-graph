@@ -18,6 +18,8 @@ private:
 	long m; // numero de arestas
 
 	Set* neighbors; //a matrix de adjacencias, cada vértice tem sei próprio Set
+	char** matIsIn;
+	char* vertDegrees;
 
 	Graph();// cria um grafo vazio, necessário para alguns métodos.
 
@@ -91,11 +93,16 @@ public:
 	 * */
 	void AllocNeigh ();
 
+	void BuildMatrix();
+
+	void ArrayDegree();
+
 	void SetN (int);
 	void SetM (int);
 	int GetN ();
 	int GetM ();
 	Set* GetNeighbors ();
+	char** GetMatrix();
 };
 
 #endif /* SRC_TOOLS_GRAPH_H_ */

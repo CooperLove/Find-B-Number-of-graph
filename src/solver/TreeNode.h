@@ -22,6 +22,7 @@ class TreeNode {
 
 		bool genL;
 		bool genR;
+		bool visited;
 
 		Graph* g;
 
@@ -38,6 +39,10 @@ class TreeNode {
 
 		TreeNode* genRight();
 
+		TreeNode* genLeft(int);
+
+		TreeNode* genRight(int);
+
 		bool hasLeft();
 
 		bool hasRight();
@@ -48,9 +53,19 @@ class TreeNode {
 
 		char* getBvertices();
 
+		void setBNum (short);
+
 		short getBNum();
 
+		short getBNum2 ();
+
+		void setCandNum (short);
+
+		void setVisited(bool);
+
 		short getCanNum();
+
+		bool getVisited();
 
 		void print ();
 	protected:

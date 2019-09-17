@@ -38,6 +38,8 @@ int main(int argc, char **argv){
 	//the graph
 	Graph* h;
 	Graph* g = myReader.read(fin);
+	g->BuildMatrix();
+	g->ArrayDegree();
 	VertexOrder* order = new VertexOrder (g);
 
 	g->print();
@@ -46,11 +48,17 @@ int main(int argc, char **argv){
 	Colorable* c = new Colorable();
 	c->SetG(g);
 	Enumeration* en = new Enumeration(g, v2, c);
+	en->SetBestSolution(1);
 	printf ("Begin enumeration!\n");
+	//en->buildRoot();
+	//en->fullEnum();
+	printf("\n\n\n");
 	en->buildRoot();
-	en->fullEnum();
+	g->print();
+	en->solveMax();
+	g->print();
 	printf ("End enumeration!\n");
-
+	v = order->degreeMax();
 	printf ("Max degree\n\t");
 	for (int i = 0; i < g->GetN(); i++)
 		printf ("%d ",v[i]);

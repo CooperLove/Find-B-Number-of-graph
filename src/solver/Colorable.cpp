@@ -24,7 +24,7 @@ void Colorable::build (char* bvert, short bnum){
 	this->carregarVariaveis();
 	this->startCplex(arq2, bvert);
 	this->addRestricoes();
-	this->solveProblem(arq3, arq4);
+	//this->solveProblem(arq3, arq4);
 }
 
 
@@ -119,22 +119,27 @@ void Colorable::addRestricoes(){
 	for (int v = 0; v < n; v++)
 		addRestricao01 (v);
 	for (int v = 0; v < n; v++)
+		addRestricao01_1 (v);
+	for (int v = 0; v < n; v++)
 		for (int u = 0; u < n; u++){
 			Set* s = this->g->getAntiNeig(u);
 			for (int w = 0; w < n; w++){
-				if (s->isIn(v) && s->isIn(w))
+				if (s->isIn(v) && s->isIn(w)){
 					addRestricao02 (u,w,v);
+				}
 			}
 		}
 	for (int u = 0; u < n; u++)
 		for (int v = 0; v < n; v++)
-			if (!this-g->hasEdge(u,v))
+			if (!this-g->hasEdge(u,v)){
 				addRestricao03(u, v);
+			}
 	for (int u = 0; u < n; u++){
 		Set* s = this->g->getAntiNeig(u);
 		for (int v = 0; v < n;v++){
-			if (s->isIn(v))
+			if (s->isIn(v)){
 				addRestricao04(u, v);
+			}
 		}
 	}
 }
@@ -143,7 +148,8 @@ void Colorable::addRestricao01 (int u){
       
     //printf("Rest u =%d v= %d\n", u, v);
 	Set* s = this->g->getNeig(u);
-	s->add(u);
+	Set* s2 = s->copy();
+	s2->add(u);
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
@@ -154,7 +160,7 @@ void Colorable::addRestricao01 (int u){
 	//s->print();
 	for (int v = 0; v < n; v++)
 	{
-		if (s->isIn(v)){
+		if (s2->isIn(v)){
 			//printf("O vertice %d esta em S\n",v);
 			col[contador] = variavelX[v][u];
 			coef[contador] = 1.0;
@@ -165,6 +171,37 @@ void Colorable::addRestricao01 (int u){
 	int rows[2] = {0,contador}; // troquei 
 	double b[1] = {1.0}; //troquei
 	char sense[1] = {'E'}; //troquei
+
+    CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
+      
+} 
+
+void Colorable::addRestricao01_1 (int v){
+      
+    //printf("Rest u =%d v= %d\n", u, v);
+	
+	int n = this->g->GetN();
+	int  contador =0;
+	int tam = n;
+	double coef[tam];
+	int col[tam];// col -id 
+    int c = 0;
+
+	//s->print();
+	for (int u = 0; u < n; u++)
+	{
+		col[contador] = variavelX[v][u];
+		coef[contador] = 1.0;
+		contador++;
+	}
+
+	col[contador] = variavelX[v][v];
+	coef[contador] = -1.0;
+	contador++;
+	
+	int rows[2] = {0,contador}; // troquei 
+	double b[1] = {0.0}; //troquei
+	char sense[1] = {'L'}; //troquei
 
     CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
       

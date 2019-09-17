@@ -35,6 +35,10 @@ public:
 	void fullEnum(TreeNode* root);
 
 	TreeNode* GetRoot();
+
+	int GetBestSolution ();
+
+	void SetBestSolution (int);
 };
 
 #endif /* SRC_SOLVER_ENUMERATION_H_ */
