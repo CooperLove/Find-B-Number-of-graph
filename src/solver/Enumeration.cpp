@@ -43,37 +43,32 @@ int Enumeration::solveMax(){
 	do
 	{
 		if (nodes > MAX_NODES) break;
-		if (!this->stack[nivel]->hasChild()/* && this->stack[nivel]->getBNum2() >= this->bestsol*/){
-			//printf ("Nivel %d, %d\n",nivel,leaves+1);
-			//printf("\nPrint\n");
-			this->stack[nivel]->print();
+		this->stack[nivel]->print();
+		getchar();
+		if (!this->stack[nivel]->hasChild()){
+			printf("\t-------------------------------------------------\n");
+			//this->stack[nivel]->print();
 			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
+			printf("\t-------------------------------------------------\n");
 			nivel--; leaves++;
 			continue;
 		}
 		if (this->stack[nivel]->hasLeft() ){
 			TreeNode* t = this->stack[nivel]->genLeft(this->bestsol);
-			//printf("T Esq %d ",t->getBNum2());
-			//t->print();
 			if (t->getBNum2() != 0){
 				this->stack[nivel + 1] = t; 
-				nodes++; nivel++; printf (" <= ");
+				nodes++; nivel++; //printf (" <= ");
 				continue;
 			}
 		}
-		//printf("Dir %d\n",this->stack[nivel]->hasRight());
 		if (this->stack[nivel]->hasRight() ){
-			//printf("Gerando dir\n");
 			TreeNode* t = this->stack[nivel]->genRight(this->bestsol);
-			//printf("T Dir\n");
 			if (t->getBNum2() != 0){	
 				this->stack[nivel + 1] = t; 
-				nodes++; nivel++; printf (" => ");
+				nodes++; nivel++; //printf (" => ");
 				continue;
 			}
 		}
-		//this->stack[nivel]->setVisited(true);
-		//printf("Subiu\n");
 		nivel--;
 	} while (nivel != 0);
 	printf ("\n\tPrintou %d folhas\n",leaves);
@@ -89,10 +84,12 @@ void Enumeration::fullEnum(){
 	do
 	{
 		if (nodes > MAX_NODES) break;
+		this->stack[nivel]->print();
+		getchar();
 		if (!this->stack[nivel]->hasChild() ){
 			//printf ("Nivel %d, %d\n",nivel,leaves+1);
 			printf("\n");
-			this->stack[nivel]->print();
+			//this->stack[nivel]->print();
 			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
 			nivel--; leaves++;
 			continue;

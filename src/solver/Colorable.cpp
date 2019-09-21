@@ -24,7 +24,7 @@ void Colorable::build (char* bvert, short bnum){
 	this->carregarVariaveis();
 	this->startCplex(arq2, bvert);
 	this->addRestricoes();
-	//this->solveProblem(arq3, arq4);
+	this->solveProblem(arq3, arq4);
 }
 
 
@@ -119,8 +119,6 @@ void Colorable::addRestricoes(){
 	for (int v = 0; v < n; v++)
 		addRestricao01 (v);
 	for (int v = 0; v < n; v++)
-		addRestricao01_1 (v);
-	for (int v = 0; v < n; v++)
 		for (int u = 0; u < n; u++){
 			Set* s = this->g->getAntiNeig(u);
 			for (int w = 0; w < n; w++){
@@ -147,7 +145,7 @@ void Colorable::addRestricoes(){
 void Colorable::addRestricao01 (int u){
       
     //printf("Rest u =%d v= %d\n", u, v);
-	Set* s = this->g->getNeig(u);
+	Set* s = this->g->getAntiNeig(u);
 	Set* s2 = s->copy();
 	s2->add(u);
 	int n = this->g->GetN();

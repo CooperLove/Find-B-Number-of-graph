@@ -50,6 +50,8 @@ class TreeNode {
 		bool hasChild();
 
 		char* getCand();
+		
+		char* getCurCand();
 
 		char* getBvertices();
 
@@ -58,6 +60,8 @@ class TreeNode {
 		short getBNum();
 
 		short getBNum2 ();
+
+		void setCand(char*);
 
 		void setCandNum (short);
 
