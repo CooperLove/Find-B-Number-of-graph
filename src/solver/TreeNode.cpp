@@ -168,7 +168,7 @@ bool TreeNode::hasLeft(){
 }
 
 bool TreeNode::hasRight(){
-	return this->genR ? false : true;;
+	return this->genR ? false : true;
 }
 
 bool TreeNode::hasChild(){

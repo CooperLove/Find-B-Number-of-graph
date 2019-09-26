@@ -43,8 +43,11 @@ void Colorable::carregarVariaveis(){
 			variavelX[u] = (int*)malloc(n * sizeof(int));
 			for(v = 0; v < n; v++)
 			{
-				variavelX[u][v] = c;
-				c ++;
+				if(!g->hasEdge(u,v)){
+					variavelX[u][v] = c;
+					c++;
+				}
+
 				//printf("%d ", variavelX[u][v]+1);
 				
 			} //printf("\n");
@@ -96,14 +99,15 @@ void Colorable::startCplex(char arq[], char* bvert){
 	{
 		for(v = 0; v < n; v++)
 		{
-			obj[contador] = 0; //troquei
-			if (bvert[u] == 1 && u == v)
-				obj[contador] = 1;
-			lb[contador] = 0.0;
-			ub[contador] = 1.0;
-			type[contador] = 'B';
-			
-			contador++;
+			if(!g->hasEdge(u,v)){
+				obj[contador] = 0; //troquei
+				if (u == v)
+					obj[contador] = 1;
+				lb[contador] = 0.0;
+				ub[contador] = 1.0;
+				type[contador] = 'B';
+				contador++;
+			}
 		}
 	}
 	
@@ -147,7 +151,7 @@ void Colorable::addRestricoes(){
 void Colorable::addRestricao01 (int u){
       
     //printf("Rest u =%d v= %d\n", u, v);
-	Set* s = this->g->getNeig(u);
+	Set* s = this->g->getNeig(u);//anti-neigh
 	Set* s2 = s->copy();
 	s2->add(u);
 	int n = this->g->GetN();
@@ -188,20 +192,20 @@ void Colorable::addRestricao01_1 (int v){
     int c = 0;
 
 	//s->print();
-	for (int u = 0; u < n; u++)
-	{
-		col[contador] = variavelX[v][u];
-		coef[contador] = 1.0;
-		contador++;
-	}
+	//for (int u = 0; u < n; u++)
+	//{
+	//	col[contador] = variavelX[v][u];
+	//	coef[contador] = 1.0;
+	//	contador++;
+	//}
 
 	col[contador] = variavelX[v][v];
-	coef[contador] = -1.0;
+	coef[contador] = 1.0;
 	contador++;
 	
 	int rows[2] = {0,contador}; // troquei 
-	double b[1] = {0.0}; //troquei
-	char sense[1] = {'L'}; //troquei
+	double b[1] = {1.0}; //troquei
+	char sense[1] = {'E'}; //troquei
 
     CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
       
