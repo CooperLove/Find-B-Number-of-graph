@@ -149,11 +149,7 @@ void Colorable::addRestricoes(){
 void Colorable::addRestricao01 (int u){
       
     //printf("Rest u =%d v= %d\n", u, v);
-<<<<<<< HEAD
-	Set* s = this->g->getNeig(u);//anti-neigh
-=======
-	Set* s = this->g->getAntiNeig(u);
->>>>>>> branch 'master' of https://github.com/CooperLove/implementacoes_em_c.git
+	Set* s = this->g->getAntiNeig(u);//anti-neigh
 	Set* s2 = s->copy();
 	s2->add(u);
 	int n = this->g->GetN();
@@ -163,6 +159,9 @@ void Colorable::addRestricao01 (int u){
 	int col[tam];// col -id 
     int c = 0;
 
+	col[contador] = variavelX[u][u];
+	coef[contador] = 1.0;
+	contador++;
 	//s->print();
 	for (int v = 0; v < n; v++)
 	{
@@ -182,10 +181,10 @@ void Colorable::addRestricao01 (int u){
       
 } 
 
-void Colorable::addRestricao01_1 (int v){
-      
-    //printf("Rest u =%d v= %d\n", u, v);
-	
+void Colorable::addRestricao01_1 (int u){
+    Set* s = this->g->getAntiNeig(u);//anti-neigh
+	Set* s2 = s->copy();
+	s2->add(u);
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
@@ -193,21 +192,21 @@ void Colorable::addRestricao01_1 (int v){
 	int col[tam];// col -id 
     int c = 0;
 
-	//s->print();
-	//for (int u = 0; u < n; u++)
-	//{
-	//	col[contador] = variavelX[v][u];
-	//	coef[contador] = 1.0;
-	//	contador++;
-	//}
-
-	col[contador] = variavelX[v][v];
+	col[contador] = variavelX[u][u];
 	coef[contador] = 1.0;
 	contador++;
+	for (int v = 0; v < n; v++)
+	{
+		if (s2->isIn(v)){
+			col[contador] = variavelX[u][v];
+			coef[contador] = 1.0;
+			contador++;
+		}
+	}
 	
-	int rows[2] = {0,contador}; // troquei 
-	double b[1] = {1.0}; //troquei
-	char sense[1] = {'E'}; //troquei
+	int rows[2] = {0,contador}; 
+	double b[1] = {0.0}; 
+	char sense[1] = {'E'}; 
 
     CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
       
