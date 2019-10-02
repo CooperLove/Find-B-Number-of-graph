@@ -211,6 +211,37 @@ void Colorable::addRestricao01_1 (int v){
       
 } 
 
+void Colorable::addRestricao01_0 (int v){
+
+    //printf("Rest u =%d v= %d\n", u, v);
+
+	int n = this->g->GetN();
+	int  contador =0;
+	int tam = n;
+	double coef[tam];
+	int col[tam];// col -id
+    int c = 0;
+
+	//s->print();
+	//for (int u = 0; u < n; u++)
+	//{
+	//	col[contador] = variavelX[v][u];
+	//	coef[contador] = 1.0;
+	//	contador++;
+	//}
+
+	col[contador] = variavelX[v][v];
+	coef[contador] = 1.0;
+	contador++;
+
+	int rows[2] = {0,contador}; // troquei
+	double b[1] = {0.0}; //troquei
+	char sense[1] = {'E'}; //troquei
+
+    CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
+
+}
+
 void Colorable::addRestricao02 (int u, int w, int v){
     int  contador =0;
 	int n = this->g->GetN();
