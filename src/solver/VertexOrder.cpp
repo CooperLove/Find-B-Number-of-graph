@@ -27,8 +27,13 @@ char* VertexOrder::degreeMax (){
 	
 	for (int i = 0; i < size; i++)
 		for (int j = i+1; j < size; j++)
-			if (g->degree(i) < g->degree(j))
+			if (g->degree(v[i]-1) < g->degree(v[j]-1)){
 				Swap (&v[i], &v[j]);
+				//printf("(%d %d) < (%d %d)\n",i,g->degree(i),j, g->degree(j));
+			}
+	for (int i = 0; i < size; i++)
+		printf("%d->%lu ",v[i]-1, g->degree(v[i]-1));
+	printf ("\n");
 	return v;
 }
 
@@ -40,7 +45,7 @@ char* VertexOrder::degreeMin (){
 
 	for (int i = 0; i < size; i++)
 		for (int j = i+1; j < size; j++)
-			if (g->degree(i) > g->degree(j))
+			if (g->degree(v[i]-1) > g->degree(v[j]-1))
 				Swap (&v[i], &v[j]);
 	return v;
 }

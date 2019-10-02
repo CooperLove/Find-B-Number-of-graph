@@ -143,24 +143,28 @@ void Graph::BuildMatrix (){
 	int n = this->GetN();
 	this->matIsIn = (char**)malloc(n * sizeof(char*));
 	printf("Matrix\n");
-	for (size_t i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 		this->matIsIn[i] = (char*)malloc(n * sizeof(char));
-	
-	for (size_t u = 0; u < n ; u++){
+	printf("Allocation\n");
+	for (int u = 0; u < n; u++){
 		Set* neighU = this->getNeig(u);	
 		Set* neighV = this->getNeig(u+1);
 		this->matIsIn[u][u] = 1;
-		this->matIsIn[u][u+1] = 1;
-		neighU->print();
-		neighV->print();
-		printf("\n");
-		for (size_t v = 0; v < n; v++)
-		{
-			if (neighU->vertices[v] == 1 && neighV->vertices[v] != 1)
-				this->matIsIn[u][u+1] = 0;
+		if (u+1 < n){
+			this->matIsIn[u][u+1] = 1;
+			//neighU->print();
+			//neighV->print();
+			printf("%ulu\n",u);
+			for (int v = 0; v < n; v++)
+			{
+				if (neighU->vertices[v] == 1 && neighV->vertices[v] != 1)
+					this->matIsIn[u][u+1] = 0;
+			}
 		}
+			
+		
 	}
-	printf("\nMatrix\n");
+	printf("\nMatrix P2\n");
 	for (int u = 0; u < n; u++){
 		for (int v = 0; v < n; v++)
 			printf("%d ",this->matIsIn[u][v]);
