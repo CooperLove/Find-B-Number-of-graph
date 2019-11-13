@@ -18,11 +18,11 @@ class Enumeration {
 	Colorable* color;
 
 	Graph* g;
-	char* order;
+	int* order;
 
 	TreeNode* stack[];
 public:
-	Enumeration(Graph* g, char* order, Colorable* c);
+	Enumeration(Graph* g, int* order, Colorable* c);
 
 	virtual ~Enumeration();
 
@@ -39,6 +39,8 @@ public:
 	int GetBestSolution ();
 
 	void SetBestSolution (int);
+
+	bool verify (int*, int*, int);
 };
 
 #endif /* SRC_SOLVER_ENUMERATION_H_ */

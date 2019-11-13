@@ -36,14 +36,16 @@ private:
 
 	Graph* g;
 
+	short it = 0;
+
 public:
 	Colorable();
 
 	virtual ~Colorable();
 
-	void build(char* bvert, short bnum);
+	void build(int* bvert, short bnum);
 
-	void startCplex (char arq[], char*);
+	void startCplex (char arq[]);
 
 	void solveProblem (char arq1[], char arq2[]);
 
@@ -52,8 +54,14 @@ public:
 	void addRestricoes();
 
 	void addRestricao01 (int v);
+
+	void changeBounds(int*);
 	
 	void addRestricao01_1 (int);
+
+	void addRestricao01_2(int);
+
+	void addRestricao01_3(int);
 
 	void addRestricao02 (int, int, int);
 

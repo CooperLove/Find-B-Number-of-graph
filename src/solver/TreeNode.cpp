@@ -19,7 +19,7 @@ TreeNode::TreeNode(TreeNode* t, bool dir){
 	this->Bvts                     = t->Bvts;            //printf ("03 OKAY!\n");
 	this->posBvt                   = t->posBvt + 1;
 	this->Bvts[t->currCand[0] - 1] = dir ? 0 : 1;        //printf ("04 OKAY!%d\n",t->numcand);
-	char* newCand                   = new char[t->numcand - 1]; //printf ("05 OKAY!\n");
+	int* newCand                   = new int[t->numcand - 1]; //printf ("05 OKAY!\n");
 	this->posCand                  = this->posCand + 1 > this->g->GetN() ? this->posCand + 1 : this->posCand;
 	//printf ("06 OKAY!\n");
 
@@ -33,14 +33,14 @@ TreeNode::TreeNode(TreeNode* t, bool dir){
 	//this->print();
 }
 
-TreeNode::TreeNode (Graph* G, char* order) {
+TreeNode::TreeNode (Graph* G, int* order) {
 	// TODO Auto-generated constructor stub
 	this->g        = G;
 	this->numcand  = G->GetN();
 	this->Cand     = order;
 	this->currCand = order;
 	this->posBvt   = 0;
-	this->Bvts     = new char[this->numcand];
+	this->Bvts     = new int[this->numcand];
 	this->posCand  = 0;
 
 	for (int i = 0; i < this->numcand; i++)
@@ -60,14 +60,15 @@ TreeNode* TreeNode::genLeft(){
 
 TreeNode* TreeNode::genLeft(int bestsol){
 	TreeNode* t = new TreeNode(this, false);
+	printf("DPS ESQ\n");
 	this->genL = true;
 	int bnum = t->getBNum2();
 	
-	char* b = t->getBvertices();
-	char* c = t->getCand();
+	int* b = t->getBvertices();
+	int* c = t->getCand();
 	int n = this->g->GetN();
 	int cnum = t->getCanNum();
-
+	printf("Atribuições\n");
 	for (int i = 0; i < n; i++)
 	{
 		if (b[i] == 1 && t->g->degree(i) < bestsol)
@@ -75,25 +76,29 @@ TreeNode* TreeNode::genLeft(int bestsol){
 		if (c[i] == 1 && t->g->degree(i) < bestsol)
 		{ t->getCurCand()[i] = 0; t->setCandNum(t->getCanNum() - 1); }
 	}
-
+	printf("Corte01\n");
 	for (int u = 0; u < n; u++)
 		for (int v = u+1; v < n; v++)
 			if (!t->g->hasEdge(u,v) && this->g->GetMatrix()[u][v] == 1)
 			{t->getCurCand()[u] = 0; t->setCandNum (t->getCanNum() - 1); }
-
+	printf("Corte02\n");
 	for (int i = 0; i < n; i++)
 	{	
 		if (t->getBvertices()[i] == 1 && t->g->degree(i) < bnum - 1)
 		{ t->setBNum(t->getBNum2() - 1); }
 	}
+	printf("Corte03\n");
 	if (cnum + bnum < bestsol || t->getBNum2() == 0 || t->getBNum2() < bestsol){
 		t->genL = true; t->genR = true;
 	}
 	
 	if (t->getCanNum() > 0){
 		int s = 0;
-		char* new_cand = (char*) malloc(t->getCanNum() * sizeof(char));
-		for (int i = 0; i < cnum; i++)
+		printf("Alocação de (%d * %d) %d bytes\n",t->getCanNum(), sizeof(int),(t->getCanNum() * sizeof(int)));
+		int* new_cand = (int*) malloc(t->getCanNum()*2 * sizeof(int));
+		//int* new_cand = new int[(int)t->getCanNum()];
+		printf("Alocação\n");
+		for (int i = 0; i < t->getCanNum(); i++)
 		{
 			if (t->currCand[i] != 0){
 				new_cand[s++] = t->currCand[i];
@@ -102,6 +107,7 @@ TreeNode* TreeNode::genLeft(int bestsol){
 		printf("Set\n");
 		t->setCand(new_cand);
 	}
+	printf("Corte04\n");
 	t->numcand = t->getCanNum() > 0 ? t->getCanNum() : 0; 
 	return t;
 }
@@ -114,10 +120,11 @@ TreeNode* TreeNode::genRight(){
 
 TreeNode* TreeNode::genRight(int bestsol){
 	TreeNode* t = new TreeNode(this, true);
+	printf("DPS\n");
 	this->genR = true;
 	
-	char* b = t->getBvertices();
-	char* c = t->getCand();
+	int* b = t->getBvertices();
+	int* c = t->getCand();
 	int n = this->g->GetN();
 	int bnum = t->getBNum();
 	int cnum = t->getCanNum();
@@ -131,7 +138,7 @@ TreeNode* TreeNode::genRight(int bestsol){
 		}
 	}
 	int s = 0;
-	char* new_cand = (char*) malloc(t->getCanNum() * sizeof(char));
+	int* new_cand = (int*) malloc(t->getCanNum() * sizeof(int));
 	for (int i = 0; i < cnum; i++)
 	{
 		if (t->currCand[i] != 0){
@@ -163,22 +170,22 @@ bool TreeNode::hasLeft(){
 }
 
 bool TreeNode::hasRight(){
-	return this->genR ? false : true;
+	return this->genR ? false : true;;
 }
 
 bool TreeNode::hasChild(){
 	return this->numcand == 0 ? false : true;
 }
 
-char* TreeNode::getCand(){
+int* TreeNode::getCand(){
 	return this->Cand;
 }
 
-char* TreeNode::getCurCand(){
+int* TreeNode::getCurCand(){
 	return this->currCand;
 }
 
-char* TreeNode::getBvertices(){
+int* TreeNode::getBvertices(){
   	return this->Bvts;
 }
 
@@ -202,7 +209,7 @@ void TreeNode::setCandNum (short value){
 	this->numcand = value;
 }
 
-void TreeNode::setCand (char* value){
+void TreeNode::setCand (int* value){
 	this->currCand = value;
 }
 

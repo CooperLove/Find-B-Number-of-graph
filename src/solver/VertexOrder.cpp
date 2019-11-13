@@ -19,9 +19,9 @@ VertexOrder::~VertexOrder() {
 	// TODO Auto-generated destructor stub
 }
 
-char* VertexOrder::degreeMax (){
+int* VertexOrder::degreeMax (){
 	int size = this->g->GetN();
-	char* v = new char[size];
+	int* v = new int[size];
 	for (int i = 0; i < size; i++)
 		v[i] = i+1;
 	
@@ -32,14 +32,14 @@ char* VertexOrder::degreeMax (){
 				//printf("(%d %d) < (%d %d)\n",i,g->degree(i),j, g->degree(j));
 			}
 	for (int i = 0; i < size; i++)
-		printf("%d->%lu ",v[i]-1, g->degree(v[i]-1));
+		printf("%d->%lu ",v[i], g->degree(v[i]-1));
 	printf ("\n");
 	return v;
 }
 
-char* VertexOrder::degreeMin (){
+int* VertexOrder::degreeMin (){
 	int size = g->GetN();
-	char* v = new char[size];
+	int* v = new int[size];
 	for (int i = 0; i < size; i++)
 		v[i] = i + 1;
 
@@ -50,12 +50,12 @@ char* VertexOrder::degreeMin (){
 	return v;
 }
 
-char* VertexOrder::rand (){
-	char* v = new char[1];
+int* VertexOrder::rand (){
+	int* v = new int[1];
 	return v;
 }
 
-void VertexOrder::Swap (char* a, char* b){
+void VertexOrder::Swap (int* a, int* b){
 	//printf ("%d %d -- ",*a,*b);
 	int aux = *a;
 	*a = *b;

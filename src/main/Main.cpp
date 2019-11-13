@@ -44,9 +44,9 @@ int main(int argc, char **argv){
 	VertexOrder* order = new VertexOrder (g);
 
 	
-	char* v = order->degreeMax();
+	int* v = order->degreeMax();
 	printf ("Ordenado\n");
-	char* v2 = v;
+	int* v2 = v;
 	Colorable* c = new Colorable();
 	c->SetG(g);
 	Enumeration* en = new Enumeration(g, v2, c);
