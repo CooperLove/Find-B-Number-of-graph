@@ -152,8 +152,6 @@ void Graph::BuildMatrix (){
 		this->matIsIn[u][u] = 1;
 		if (u+1 < n){
 			this->matIsIn[u][u+1] = 1;
-			//neighU->print();
-			//neighV->print();
 			printf("%ulu\n",u);
 			for (int v = 0; v < n; v++)
 			{
@@ -161,8 +159,6 @@ void Graph::BuildMatrix (){
 					this->matIsIn[u][u+1] = 0;
 			}
 		}
-			
-		
 	}
 	printf("\nMatrix P2\n");
 	for (int u = 0; u < n; u++){

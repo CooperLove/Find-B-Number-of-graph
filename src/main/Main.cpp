@@ -37,29 +37,28 @@ int main(int argc, char **argv){
 
 	//the graph
 	Graph* h;
-	Graph* g = myReader.read(fin);
-	g->print();
+	Graph* g = myReader.read(fin);                  // Inicializa o grafo com arquivo contendo os vertices
+	g->print();                                     // Printa o grafo
 	g->BuildMatrix();
 	g->ArrayDegree();
-	VertexOrder* order = new VertexOrder (g);
+	VertexOrder* order = new VertexOrder (g);       // Cria o array da ordem dos vertices
 
 	
-	int* v = order->degreeMax();
+	int* v = order->degreeMax();                    // Ordem maxima
 	printf ("Ordenado\n");
-	int* v2 = v;
-	Colorable* c = new Colorable();
-	c->SetG(g);
-	Enumeration* en = new Enumeration(g, v2, c);
-	en->SetBestSolution(1);
+	int* v2 = v; 
+	Colorable* c = new Colorable();                 // Cria o solver
+	c->SetG(g);                                     // Seta o grafo, inicializa o cplex, carrega as variaveis e add as restrições
+	Enumeration* en = new Enumeration(g, v2, c);    // Cria a enumeração
+	en->SetBestSolution(1);                         // Seta o valor inicial da melhor solução como 1
 	printf ("Begin enumeration!\n");
-	//en->buildRoot();
-	//en->fullEnum();
 	printf("\n\n\n");
-	en->buildRoot();
-	//g->print();
-	en->fullEnum();
-	//g->print();
+	en->buildRoot();                                // Constroi a raiz
+	en->fullEnum();                                 // Enumera todas as soluções
 	printf ("End enumeration!\n");
+	
+	// ---------------------- Prints ---------------------- //
+
 	v = order->degreeMax();
 	printf ("Max degree\n\t");
 	for (int i = 0; i < g->GetN(); i++)

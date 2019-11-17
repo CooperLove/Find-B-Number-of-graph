@@ -13,37 +13,34 @@
 TreeNode::TreeNode(){}
 
 TreeNode::TreeNode(TreeNode* t, bool dir){
-	this->g                        = t->g;
-	this->Cand                     = t->Cand;            //printf ("01 OKAY!\n");
-	this->numcand                  = t->getCanNum() > 0 ? t->getCanNum() - 1 : 0;     //printf ("02 OKAY!\n");
-	this->Bvts                     = t->Bvts;            //printf ("03 OKAY!\n");
+	this->g                        = t->g;                                          // Seta o grafo
+	this->Cand                     = t->Cand;                                       // Seta os candidatos
+	this->numcand                  = t->getCanNum() > 0 ? t->getCanNum() - 1 : 0;   // decrementa o num de candidatos caso ainda existam candidatos 
+	this->Bvts                     = t->Bvts;                                       // Seta os bvertices
 	this->posBvt                   = t->posBvt + 1;
-	this->Bvts[t->currCand[0] - 1] = dir ? 0 : 1;        //printf ("04 OKAY!%d\n",t->numcand);
-	int* newCand                   = new int[t->numcand - 1]; //printf ("05 OKAY!\n");
+	this->Bvts[t->currCand[0] - 1] = dir ? 0 : 1;                                   // Marca o bvertice como 1 caso seja um ramo a esq, C.C. marca como 0 
+	int* newCand                   = new int[t->numcand - 1];                       // Instancia o array dos novos candidatos
 	this->posCand                  = this->posCand + 1 > this->g->GetN() ? this->posCand + 1 : this->posCand;
-	//printf ("06 OKAY!\n");
-
-	//printf ("%d - %d!\n",this->posBvt, t->g->GetN());
-	for (int i = 0; i < t->numcand - 1; i++) // 123456 -> 23456
-		newCand[i] = t->Cand[i + this->posBvt];
-	this->currCand = newCand;
-	this->getBNum();
 	
-	//printf ("TreeNode OKAY! %d %d\n",t->getCanNum(), this->numcand);
-	//this->print();
+	for (int i = 0; i < t->numcand - 1; i++) // Pega todos os candidatos exceto o primeiro: 123456 -> 23456
+		newCand[i] = t->Cand[i + this->posBvt];
+
+	this->currCand = newCand; // Atualiza os candidatos atuais
+	this->getBNum();          // Calcula o numero de bvertices
+	
 }
 
-TreeNode::TreeNode (Graph* G, int* order) {
+TreeNode::TreeNode (Graph* G, int* order) { // Construtor da raiz
 	// TODO Auto-generated constructor stub
-	this->g        = G;
-	this->numcand  = G->GetN();
-	this->Cand     = order;
-	this->currCand = order;
-	this->posBvt   = 0;
-	this->Bvts     = new int[this->numcand];
+	this->g        = G;                       // Seta o grafo
+	this->numcand  = G->GetN();               // Total de candidatos 
+	this->Cand     = order;                   // ordem inicial são os candidatos
+	this->currCand = order;                   // currCand é um array auxiliar para efetuar a enumeração
+	this->posBvt   = 0;                       
+	this->Bvts     = new int[this->numcand];  // Numero de bvertices é igual ao tamanho do grafo
 	this->posCand  = 0;
 
-	for (int i = 0; i < this->numcand; i++)
+	for (int i = 0; i < this->numcand; i++) // Inicializa os bvert
 		this->Bvts[i] = 0;
 	
 }
@@ -60,15 +57,13 @@ TreeNode* TreeNode::genLeft(){
 
 TreeNode* TreeNode::genLeft(int bestsol){
 	TreeNode* t = new TreeNode(this, false);
-	printf("DPS ESQ\n");
-	this->genL = true;
-	int bnum = t->getBNum2();
+	this->genL = true; // Marca o filho esquerdo como gerado
+	int bnum = t->getBNum2(); // Numero de bvert -> Bnum() calcula o num e retorna, Bnum2() só retorna
 	
 	int* b = t->getBvertices();
 	int* c = t->getCand();
-	int n = this->g->GetN();
-	int cnum = t->getCanNum();
-	printf("Atribuições\n");
+	int n = this->g->GetN(); // Tamanho do grafo
+	int cnum = t->getCanNum(); // Numero de candidatos
 	for (int i = 0; i < n; i++)
 	{
 		if (b[i] == 1 && t->g->degree(i) < bestsol)
@@ -76,38 +71,34 @@ TreeNode* TreeNode::genLeft(int bestsol){
 		if (c[i] == 1 && t->g->degree(i) < bestsol)
 		{ t->getCurCand()[i] = 0; t->setCandNum(t->getCanNum() - 1); }
 	}
-	printf("Corte01\n");
-	for (int u = 0; u < n; u++)
-		for (int v = u+1; v < n; v++)
+	for (int u = 0; u < n; u++){
+		for (int v = u+1; v < n; v++){
 			if (!t->g->hasEdge(u,v) && this->g->GetMatrix()[u][v] == 1)
 			{t->getCurCand()[u] = 0; t->setCandNum (t->getCanNum() - 1); }
-	printf("Corte02\n");
+		}
+	}
+
 	for (int i = 0; i < n; i++)
 	{	
 		if (t->getBvertices()[i] == 1 && t->g->degree(i) < bnum - 1)
 		{ t->setBNum(t->getBNum2() - 1); }
 	}
-	printf("Corte03\n");
 	if (cnum + bnum < bestsol || t->getBNum2() == 0 || t->getBNum2() < bestsol){
 		t->genL = true; t->genR = true;
 	}
 	
 	if (t->getCanNum() > 0){
 		int s = 0;
-		printf("Alocação de (%d * %d) %d bytes\n",t->getCanNum(), sizeof(int),(t->getCanNum() * sizeof(int)));
 		int* new_cand = (int*) malloc(t->getCanNum()*2 * sizeof(int));
-		//int* new_cand = new int[(int)t->getCanNum()];
-		printf("Alocação\n");
+		
 		for (int i = 0; i < t->getCanNum(); i++)
 		{
 			if (t->currCand[i] != 0){
 				new_cand[s++] = t->currCand[i];
 			}
 		}
-		printf("Set\n");
 		t->setCand(new_cand);
 	}
-	printf("Corte04\n");
 	t->numcand = t->getCanNum() > 0 ? t->getCanNum() : 0; 
 	return t;
 }
@@ -120,16 +111,15 @@ TreeNode* TreeNode::genRight(){
 
 TreeNode* TreeNode::genRight(int bestsol){
 	TreeNode* t = new TreeNode(this, true);
-	printf("DPS\n");
-	this->genR = true;
+	this->genR = true; // Marcar o filho direito como gerado
 	
 	int* b = t->getBvertices();
 	int* c = t->getCand();
-	int n = this->g->GetN();
-	int bnum = t->getBNum();
-	int cnum = t->getCanNum();
+	int n = this->g->GetN(); // Tamanho do grafo
+	int bnum = t->getBNum(); // Numero de b-vertices
+	int cnum = t->getCanNum(); // Numero de candidatos
 
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n; i++) // Primeiro corte
 	{
 		if (b[i] == 1 && t->g->degree(i) < bestsol)
 			t->getBvertices()[i] = 0; t->setBNum(t->getBNum() - 1);
@@ -139,26 +129,24 @@ TreeNode* TreeNode::genRight(int bestsol){
 	}
 	int s = 0;
 	int* new_cand = (int*) malloc(t->getCanNum() * sizeof(int));
-	for (int i = 0; i < cnum; i++)
+	for (int i = 0; i < cnum; i++) // Segundo corte
 	{
 		if (t->currCand[i] != 0){
 			new_cand[s++] = t->currCand[i];
 		}
 	}
-	t->setCand(new_cand);
+	t->setCand(new_cand); // Atualiza o array de cand 
 
 	t->numcand = t->getCanNum();
 
 	if (t->getCanNum() + t->getBNum() < bestsol){
 		t->sizeB = 0;
 		t->numcand = 0;
-		printf("Corte 2 dir\n");
 	}
 
 	for (int i = 0; i < n; i++)
 	{
 		if (t->getBvertices()[i] == 1 && t->g->degree(i) < bnum - 1){
-		printf ("Corte 4 dir %lu %d ",t->g->degree(i), bnum-1);
 			t->setBNum(t->getBNum2() - 1);
 		}
 	}

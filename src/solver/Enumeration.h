@@ -14,33 +14,33 @@
 
 class Enumeration {
 
-	int bestsol;
-	Colorable* color;
+	int bestsol;                       // Melhor solução
+	Colorable* color;                  // Solver
 
-	Graph* g;
-	int* order;
+	Graph* g;                          // Grafo
+	int* order;                        // Ordem dos vértices
 
-	TreeNode* stack[];
+	TreeNode* stack[];                 // Pilha utilizada na recursão
 public:
 	Enumeration(Graph* g, int* order, Colorable* c);
 
 	virtual ~Enumeration();
 
-	void buildRoot();
+	void buildRoot();                  // Constroi a raiz
 
-	int solveMax();
+	int solveMax();                    // Efetua a enumeração utilizando cortes
+ 
+	void fullEnum();                   // Enumera todos os ramos possíveis
 
-	void fullEnum();
+	void fullEnum(TreeNode* root);     
 
-	void fullEnum(TreeNode* root);
+	TreeNode* GetRoot();               // Retorna a raiz
 
-	TreeNode* GetRoot();
+	int GetBestSolution ();            // Retorna a melhor solução
 
-	int GetBestSolution ();
+	void SetBestSolution (int);        // Seta a melhor solução
 
-	void SetBestSolution (int);
-
-	bool verify (int*, int*, int);
+	bool verify (int*, int*, int);     // Verifica se dois arrays são equivalentes
 };
 
 #endif /* SRC_SOLVER_ENUMERATION_H_ */

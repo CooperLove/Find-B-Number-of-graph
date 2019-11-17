@@ -8,7 +8,6 @@
 #include "Colorable.h"
 
 Colorable::Colorable() {
-	// TODO Auto-generated constructor stub
 
 }
 
@@ -17,17 +16,9 @@ Colorable::~Colorable() {
 }
 
 void Colorable::build (int* bvert, short bnum){
-	char* arq2 = "log.txt";
+	//this->addRestricoes(bvert);
 	char *arq3 = "arq3.txt";
 	char *arq4 = "arq4.lp";
-	if (this->it == 0){
-		this->it++;
-		this->carregarVariaveis();
-		this->startCplex(arq2);
-		this->addRestricoes();
-	}
-
-	//this->addRestricoes(bvert);
 	this->changeBounds(bvert);
 	this->solveProblem(arq3, arq4);
 }
@@ -36,13 +27,9 @@ void Colorable::build (int* bvert, short bnum){
 void Colorable::carregarVariaveis(){
 	int u,v, t;
 	int c = 0;
-	//printf ("Carregando var\n");
-		//variaveis para arestas (Z)
-		//this->g->print();
+	
 		int n = this->g->GetN();
-	//	printf ("Tam\n");
 		variavelX = (int**)malloc(n * sizeof(int*));
-		//printf ("Alocação\n");
 		for (u = 0; u < n; u++)
 		{
 			variavelX[u] = (int*)malloc(n * sizeof(int));
@@ -126,12 +113,31 @@ void Colorable::startCplex(char arq[]){
 
 void Colorable::changeBounds(int* bvert){
 	int n = this->g->GetN();
+	int cnt = n;
+	int indices[n];
+	char lu[n];
+	double bd[n];
 	for (int v = 0; v < n; v++){
-		if (bvert[v] == 1)
-			addRestricao01_2(v);
-		else
-			addRestricao01_3(v);
+		indices[v] = variavelX[v][v];
+		if (bvert[v] == 1){
+			lu[v] = 'B';
+			bd[v] = 1.0;
+		}else{
+			lu[v] = 'B';
+			bd[v] = 0.0;
+		}
+		
 	}
+
+
+	CPXchgbds(env,lp, cnt,indices,lu,bd); 	
+
+	//for (int v = 0; v < n; v++){
+	//	if (bvert[v] == 1)
+	//		addRestricao01_2(v);
+	//	else
+	//		addRestricao01_3(v);
+	//}
 }
 
 void Colorable::addRestricoes(){
@@ -404,11 +410,9 @@ void Colorable::addRestricao04 (int u, int v){
 	coef[contador] = -1.0;
 	contador++;
 
-	//printf ("\t (%d,%d) %d %d -%d <= 0\n",u,w, variavelX[v][u], variavelX[v][w], variavelX[v][v]);
-    
-	int rows[2] = {0,contador}; // troquei 
-	double b[1] = {0.0}; //troquei
-	char sense[1] = {'L'}; //troquei
+	int rows[2] = {0,contador}; 
+	double b[1] = {0.0}; 
+	char sense[1] = {'L'}; 
 
     CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
 }
@@ -436,14 +440,13 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 	
 	double value;
 	//recuperando o valor da FO
-	
 	status = CPXgetobjval(env, lp, &value);
 
 	double vetor[cont];
 	//recuperando o valor das variáveis
 	status= CPXgetx(env, lp, vetor, 0,cont-1);
 	
-	if (value > this->g->GetN())
+	if (value > this->g->GetN()) 
 		value = 0;
 	/*
 	if (status == 0){
@@ -484,5 +487,10 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 
 
 void Colorable::SetG (Graph* g){
-	this->g = g;
+	this->g = g;                // Seta o grafo
+	char* arq2 = "log.txt";     // Arquivo de log
+
+	this->carregarVariaveis();	// Constroi as variaveis para o CPLEX
+	this->startCplex(arq2);	    // Inicializa o CPLEX
+	this->addRestricoes();      // Adiciona as restrições do modelo
 }

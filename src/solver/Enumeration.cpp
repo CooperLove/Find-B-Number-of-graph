@@ -24,14 +24,14 @@ Enumeration::~Enumeration() {
 }
 
 void Enumeration::buildRoot(){
-	TreeNode* t = new TreeNode[this->g->GetN()];
-	*this->stack = t;
-	for (int i = 0; i < this->g->GetN(); i++)
+	TreeNode* t = new TreeNode[this->g->GetN()];          // Cria um array de TreeNodes
+	*this->stack = t;                                     // Faz a pilha apontar para o novo array
+	for (int i = 0; i < this->g->GetN(); i++)             // Inicializa a pilha com TreeNodes vazios
 		this->stack[i] = new TreeNode();
 
-	TreeNode* root = new TreeNode(this->g, this->order);
-	this->stack[0] = root;
-	this->stack[0]->print();
+	TreeNode* root = new TreeNode(this->g, this->order);  // Cria a raiz 
+	this->stack[0] = root;                                // primeiro elemento da pilha é a raiz
+	this->stack[0]->print();                              // Print da raiz
 }
 
 int Enumeration::solveMax(){
@@ -42,42 +42,34 @@ int Enumeration::solveMax(){
 	int leaves = 0;
 	do
 	{
-		if (nodes > MAX_NODES) break;
-		//this->stack[nivel]->print();
-		//getchar();
-		if (!this->stack[nivel]->hasChild()){
+		
+		if (!this->stack[nivel]->hasChild()){ // O nó é uma folha
 			printf("\t-------------------------------------------------\n");
-			//this->stack[nivel]->print();
-			//this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
+			this->stack[nivel]->print();      // Printa o nó 
+			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum()); // Chamada ao CPLEX
 			printf("\t-------------------------------------------------\n");
-			nivel--; leaves++;
+			nivel--; leaves++;                // Decrementa o nivel e incrementa o num de folhas
 			continue;
 		}
-		///*
-		if (this->stack[nivel]->hasLeft() ){
-			TreeNode* t = this->stack[nivel]->genLeft(this->bestsol);
-			printf("Gerou esq!\n");
-			//free(this->stack[nivel]);
-			if (t->getBNum2() != 0){
-				this->stack[nivel + 1] = t; 
-				nodes++; nivel++; //printf (" <= ");
+		
+		if (this->stack[nivel]->hasLeft() ){    // Caso o filho esquerdo não tenha sido gerado
+			TreeNode* t = this->stack[nivel]->genLeft(this->bestsol); // Gera o filho esquerdo 
+			if (t->getBNum2() != 0){	        // Se depois dos cortes ainda possuir algum bvertice
+				this->stack[nivel + 1] = t;     // Coloca o nó criado na pilha
+				nodes++; nivel++;               // Incrimenta o nivel e os nós
 				continue;
 			}
 		}
 		
-		if (this->stack[nivel]->hasRight() ){
-			TreeNode* t = this->stack[nivel]->genRight(this->bestsol);
-			//free(this->stack[nivel]);
-			if (t->getBNum2() != 0){	
-				this->stack[nivel + 1] = t; 
-				nodes++; nivel++; //printf (" => ");
+		if (this->stack[nivel]->hasRight() ){  // Caso o filho direito não tenha sido gerado
+			TreeNode* t = this->stack[nivel]->genRight(this->bestsol); // Gera o filho direito
+			if (t->getBNum2() != 0){	       // Se depois dos cortes ainda possuir algum bvertice
+				this->stack[nivel + 1] = t;    // Coloca o nó criado na pilha
+				nodes++; nivel++;              // Incrimenta o nivel e os nós
 				continue;
 			}
 		}
-		
-		//free(this->stack[nivel]);
-		//this->stack[nivel] = new TreeNode();
-		nivel--;
+		nivel--; // Caso não tenha filhos e não seja uma folha
 	} while (nivel != 0);
 	printf ("\n\tPrintou %d folhas\n",leaves);
 	return -1;
@@ -91,50 +83,31 @@ void Enumeration::fullEnum(){
 	int leaves = 0;
 	do
 	{
-		if (nodes > MAX_NODES) break;
-		if(nodes%15000 == 0)
-			printf("Node %d\n",nodes);
-		//getchar();
+		
 		if (!this->stack[nivel]->hasChild() ){
-			//printf ("Nivel %d, %d\n",nivel,leaves+1);
-			//printf("\n%d  ",this->stack[nivel]->getBNum());
-			//this->stack[nivel]->print();
-			int tam = this->g->GetN();
-			int* na = (int*) malloc(tam * sizeof(int));
-			//printf("\t\t\t");
-			for (size_t i = 0; i < tam; i++)
-			{
-				na[i] = this->stack[nivel]->getBvertices()[i];
-				printf("%d ", na[i]);
-			}
-			//printf("\n");
-			printf ("Antes = %d ", this->verify(this->stack[nivel]->getBvertices(), na, this->stack[nivel]->getBNum()));
-			this->color->build(na, this->stack[nivel]->getBNum());
-			printf ("Depois = %d\n", this->verify(this->stack[nivel]->getBvertices(), na, this->stack[nivel]->getBNum()));
 			
-			//this->stack[nivel]->print();
+			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
+			
+			this->stack[nivel]->print();
 			nivel--; leaves++;
 			continue;
-		}else
-		{
-			//this->stack[nivel]->print();
 		}
 		
 		if (this->stack[nivel]->hasLeft()){
 			TreeNode* t = this->stack[nivel]->genLeft();
 			this->stack[nivel + 1] = t;
-			nodes++; nivel++; //printf (" <= ");
+			nodes++; nivel++; 
 			continue;
 		}
 		if (this->stack[nivel]->hasRight()){
 			TreeNode* t = this->stack[nivel]->genRight();
 			this->stack[nivel + 1] = t;
-			nodes++; nivel++; //printf (" => ");
+			nodes++; nivel++; 
 			continue;
 		}
 		nivel--;
 	} while (nivel != 0);
-	printf ("\n\tPrintou %d folhas e um total de %d\n",leaves,nodes+1);
+	printf ("\n\tPrintou %d folhas e um total de %d de Possiveis = %d \n",leaves,nodes+1, MAX_NODES);
 }
 
 

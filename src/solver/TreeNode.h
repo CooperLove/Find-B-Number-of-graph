@@ -11,67 +11,64 @@
 #include "../tools/Graph.h"
 
 class TreeNode {
-	private:
-		int* Cand;
-		int* currCand;
-		int* Bvts;
-		short numcand;
-		short sizeB;
-		short posBvt;
-		short posCand;
-
-		bool genL;
-		bool genR;
-		bool visited;
-
-		Graph* g;
-
+	private:         
+		int* Cand;                           // Array de Candidatos
+		int* currCand;                       // Array de candidatos atuais
+		int* Bvts;                           // Array de bvertices
+		short numcand;                       // Numero de candidatos
+		short sizeB;                         // Numero de bvertices
+		short posBvt;                        // Não utilizado
+		short posCand;                       // Não utilizado
+		bool genL;                           // Representa se o filho esquerdo ja foi gerado
+		bool genR;                           // Representa se o filho direito ja foi gerado
+		bool visited;                        // Representa se o nó ja foi visitado
+		Graph* g;                            // Referencia ao grafo
 	public:
-		TreeNode();
+		TreeNode();                          // Construtpor vazio
 
-		TreeNode(TreeNode* t, bool dir);
+		TreeNode(TreeNode* t, bool dir);     // Construtor dos demais nós
 
-		TreeNode(Graph* G, int* order);
+		TreeNode(Graph* G, int* order);      // Construtor da raiz
 
-		virtual ~TreeNode();
+		virtual ~TreeNode();                 // Destrutor
 
-		TreeNode* genLeft();
+		TreeNode* genLeft();                 // Gera o filho esquerdo
 
-		TreeNode* genRight();
+		TreeNode* genRight();                // Gera o filho direito
 
-		TreeNode* genLeft(int);
+		TreeNode* genLeft(int);              // Gera o filho esquerdo utilizando alguns cortes
 
-		TreeNode* genRight(int);
+		TreeNode* genRight(int);             // Gera o filho direito utilizando alguns cortes
 
-		bool hasLeft();
+		bool hasLeft();                      // True: Filho esquerdo foi gerado, C.C False
 
-		bool hasRight();
+		bool hasRight();                     // True: Filho direito foi gerado, C.C False
 
-		bool hasChild();
+		bool hasChild();                     // True: Se a lista de candidatos está vazia // É uma folha
 
-		int* getCand();
+		int* getCand();                      // Retorna o array de candidatos // Esse array nunca muda
 		
-		int* getCurCand();
+		int* getCurCand();                   // Retorna o array dos candidatos atuais // Esse array muda durante a enumeração
 
-		int* getBvertices();
+		int* getBvertices();                 // Retorna o array de bvertices
 
-		void setBNum (short);
+		void setBNum (short);                // Seta o numero de bvertices
 
-		short getBNum();
+		short getBNum();                     // Calcula e retorna o numero de bvertices
 
-		short getBNum2 ();
+		short getBNum2 ();                   // Retorna o numero de bvertices
 
-		void setCand(int*);
+		void setCand(int*);                  // Seta o array de candidatos
+ 
+		void setCandNum (short);             // Seta o numero de candidatos
 
-		void setCandNum (short);
+		void setVisited(bool);               // True: Se o no ja foi visitado // Acho que não é utilizada
 
-		void setVisited(bool);
-
-		short getCanNum();
+		short getCanNum();                   // Retorna o numero de candidatos
 
 		bool getVisited();
 
-		void print ();
+		void print ();                       // Printa o bvertices e os candidatos do nó
 	protected:
 };
 
