@@ -20,7 +20,7 @@ class Enumeration {
 	Graph* g;                          // Grafo
 	int* order;                        // Ordem dos vértices
 
-	TreeNode* stack[];                 // Pilha utilizada na recursão
+	TreeNode** stack;                 // Pilha utilizada na recursão
 public:
 	Enumeration(Graph* g, int* order, Colorable* c);
 

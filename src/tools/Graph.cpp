@@ -141,10 +141,10 @@ void Graph::print(){
 
 void Graph::BuildMatrix (){
 	int n = this->GetN();
-	this->matIsIn = (char**)malloc(n * sizeof(char*));
+	this->matIsIn = (int**)malloc(n * sizeof(int*));
 	printf("Matrix\n");
 	for (int i = 0; i < n; i++)
-		this->matIsIn[i] = (char*)malloc(n * sizeof(char));
+		this->matIsIn[i] = (int*)malloc(n * sizeof(int));
 	printf("Allocation\n");
 	for (int u = 0; u < n; u++){
 		Set* neighU = this->getNeig(u);	
@@ -171,7 +171,7 @@ void Graph::BuildMatrix (){
 
 void Graph::ArrayDegree(){
 	int n = this->GetN();
-	this->vertDegrees = (char*)malloc(n * sizeof(char));
+	this->vertDegrees = (int*)malloc(n * sizeof(int));
 	printf("Array degress\n");
 	for (int i = 0; i < n; i++){
 		this->vertDegrees[i] = this->neighbors[i].count();
@@ -203,6 +203,6 @@ Set* Graph::GetNeighbors (){
 	return this->neighbors;
 }
 
-char** Graph::GetMatrix(){
+int** Graph::GetMatrix(){
 	return this->matIsIn;
 }

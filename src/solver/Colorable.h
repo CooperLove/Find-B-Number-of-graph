@@ -13,6 +13,8 @@
 #include <string.h>
 #include "../tools/Graph.h"
 
+#define MAXN 1024
+
 /*
 	max E 
 */
@@ -30,24 +32,24 @@ private:
 
 	FILE *out;
 
-	int **variavelX;
+	int variavelX[MAXN][MAXN];
 
 	int cont;
 
 	Graph* g;
 
-	short it = 0;
+	int bestSolution;
 
 public:
 	Colorable();
 
 	virtual ~Colorable();
 
-	void build(int* bvert, short bnum);
+	bool build(int* bvert, short bnum);
 
-	void startCplex (char arq[]);
+	void startCplex ();
 
-	void solveProblem (char arq1[], char arq2[]);
+	bool solveProblem ();
 
 	void carregarVariaveis();
 
@@ -72,6 +74,8 @@ public:
 	bool solve();
 
 	void SetG(Graph* g);
+
+	int GetBestSolution();
 };
 
 #endif /* SRC_SOLVER_COLORABLE_H_ */

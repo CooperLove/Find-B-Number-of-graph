@@ -15,29 +15,27 @@ Colorable::~Colorable() {
 	// TODO Auto-generated destructor stub
 }
 
-void Colorable::build (int* bvert, short bnum){
-	//this->addRestricoes(bvert);
-	char *arq3 = "arq3.txt";
-	char *arq4 = "arq4.lp";
+bool Colorable::build (int* bvert, short bnum){	
 	this->changeBounds(bvert);
-	this->solveProblem(arq3, arq4);
+	return this->solveProblem();
 }
 
 
 void Colorable::carregarVariaveis(){
 	int u,v, t;
 	int c = 0;
-	
+		
 		int n = this->g->GetN();
-		variavelX = (int**)malloc(n * sizeof(int*));
+		//variavelX = (int**)malloc(n * sizeof(int*));
 		for (u = 0; u < n; u++)
 		{
-			variavelX[u] = (int*)malloc(n * sizeof(int));
+			//variavelX[u] = (int*)malloc(n * sizeof(int));
 			for(v = 0; v < n; v++)
 			{
+				variavelX[u][v] = -1;
 				if (!g->hasEdge(u,v)){
 					variavelX[u][v] = c;
-					c ++;
+					c++;
 				}
 				//printf("%d ", variavelX[u][v]+1);
 				
@@ -47,29 +45,12 @@ void Colorable::carregarVariaveis(){
 		this->cont = c; 
 }
 
-void Colorable::startCplex(char arq[]){
+void Colorable::startCplex(){
 
 	int status = 0;
 	env = CPXopenCPLEX(&status);
 
-	/* Abrindo um logfile */
-
-   		logfile = CPXfopen (arq, "a");
-   		if ( logfile == NULL )
-		{
-			printf("\nErro na abertura do arquivo de log\n");
-		}else{
-   		   status = CPXsetlogfile (env, logfile);
-		   if (status)
-		   {
-				printf("\nErro na abertura do arquivo de log\n");
-		   }
-		}
-	/* não é obrigatório */
-
-
-
-        //criando o problema - inicialmente estará vazio!
+      //criando o problema - inicialmente estará vazio!
 	lp = CPXcreateprob(env, &status,"Formulacao EEEE :D");
 
 
@@ -91,10 +72,10 @@ void Colorable::startCplex(char arq[]){
 		for(v = 0; v < n; v++)
 		{
 			if (!g->hasEdge(u,v)){
-				obj[contador] = 0; //troquei
+				obj[contador] = 0.0; //troquei
 				//if (bvert[u] == 1 && u == v)
 				if (u == v)
-					obj[contador] = 1;
+					obj[contador] = 1.0;
 				lb[contador] = 0.0;
 				ub[contador] = 1.0;
 				type[contador] = 'B';
@@ -114,9 +95,9 @@ void Colorable::startCplex(char arq[]){
 void Colorable::changeBounds(int* bvert){
 	int n = this->g->GetN();
 	int cnt = n;
-	int indices[n];
-	char lu[n];
-	double bd[n];
+	int indices[MAXN];
+	char lu[MAXN];
+	double bd[MAXN];
 	for (int v = 0; v < n; v++){
 		indices[v] = variavelX[v][v];
 		if (bvert[v] == 1){
@@ -146,15 +127,13 @@ void Colorable::addRestricoes(){
 	for (int v = 0; v < n; v++){
 		addRestricao01 (v);
 	}
-	//for (int v = 0; v < n; v++)
-		//addRestricao01_1 (v);
 		
 	//printf("Rest02\n");
-	for (int v = 0; v < n; v++){
-		for (int u = 0; u < n; u++){
-			Set* s = this->g->getAntiNeig(u);
+	for (int u = 0; u < n; u++){
+		Set* s = this->g->getAntiNeig(u);
+		for (int v = 0; v < n; v++){
 			for (int w = 0; w < n; w++){
-				if (s->isIn(v) && s->isIn(w) && this->g->hasEdge(u,w)){
+				if ((v!= u) && (v!=w) && (w != u) && s->isIn(v) && s->isIn(w) && this->g->hasEdge(v,w)){
 					addRestricao02 (u,w,v);
 				}
 			}
@@ -163,7 +142,7 @@ void Colorable::addRestricoes(){
 	//printf("Rest03\n");
 	for (int u = 0; u < n; u++){
 		for (int v = 0; v < n; v++){
-			if (!this->g->hasEdge(u,v)){
+			if (!this->g->hasEdge(u,v) && (v != u)){
 				addRestricao03(u, v);
 			}
 		}
@@ -172,7 +151,7 @@ void Colorable::addRestricoes(){
 	for (int u = 0; u < n; u++){
 		Set* s = this->g->getNeig(u);
 		for (int v = 0; v < n;v++){
-			if (s->isIn(v)){
+			if (!s->isIn(v) && (u!= v)){
 				addRestricao04(u, v);
 			}
 		}
@@ -189,8 +168,8 @@ void Colorable::addRestricao01 (int v){
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[MAXN];
+	int col[MAXN];// col -id 
     int c = 0;
 
 	col[contador] = variavelX[v][v];
@@ -225,8 +204,8 @@ void Colorable::addRestricao01_1 (int v){
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[MAXN];
+	int col[MAXN];// col -id 
     int c = 0;
 	char* lu;
 	double* bd;
@@ -266,8 +245,8 @@ void Colorable::addRestricao01_2(int v){
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[MAXN];
+	int col[MAXN];// col -id 
     int c = 0;
 	char* lu;
 	double* bd;
@@ -296,8 +275,8 @@ void Colorable::addRestricao01_3(int v){
 	int n = this->g->GetN();
 	int  contador =0;
 	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[MAXN];
+	int col[MAXN];// col -id 
     int c = 0;
 	char* lu;
 	double* bd;
@@ -324,11 +303,8 @@ void Colorable::addRestricao01_3(int v){
 void Colorable::addRestricao02 (int u, int w, int v){
     int  contador =0;
 	int n = this->g->GetN();
-	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
-    int c = 0;
-    
+	double coef[3];
+	int col[3];// col -id 
 	
 	col[contador] = variavelX[u][v];
 	coef[contador] = 1.0;
@@ -355,19 +331,15 @@ void Colorable::addRestricao02 (int u, int w, int v){
 void Colorable::addRestricao03 (int u, int v){
 	int  contador =0;
 	int n = this->g->GetN();
-	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[MAXN];
+	int col[MAXN];// col -id 
     int c = 0;
 
 	Set* anU = this->g->getAntiNeig (u);
 	Set* viV = this->g->getNeig (v);
-	Set* s = anU->inter(viV);
 	for (int w = 0; w < n; w++)
 	{
-		if (this->g->hasEdge(u,w))
-			continue;
-		if (s->isIn(w)){
+		if (w!=v && w!= v && anU->isIn(w) && viV->isIn(w)){
 			col[contador] = variavelX[u][w];
 			coef[contador] = 1.0;
 			contador++;
@@ -394,21 +366,16 @@ void Colorable::addRestricao03 (int u, int v){
 
 void Colorable::addRestricao04 (int u, int v){
       int  contador =0;
-	int n = this->g->GetN();
-	int tam = n;
-	double coef[tam];
-	int col[tam];// col -id 
+	double coef[2];
+	int col[2];// col -id 
     int c = 0;
-	
-	if (this->g->hasEdge(u,v) || this->g->hasEdge(u,u))
-		return;
-	col[contador] = variavelX[u][v];
-	coef[contador] = 1.0;
-	contador++;
+		col[contador] = variavelX[u][v];
+		coef[contador] = 1.0;
+		contador++;
 
-	col[contador] = variavelX[u][u];
-	coef[contador] = -1.0;
-	contador++;
+		col[contador] = variavelX[u][u];
+		coef[contador] = -1.0;
+		contador++;
 
 	int rows[2] = {0,contador}; 
 	double b[1] = {0.0}; 
@@ -417,45 +384,48 @@ void Colorable::addRestricao04 (int u, int v){
     CPXaddrows(env, lp, 0, 1, contador, b, sense, rows, col, coef, NULL, NULL);
 }
 
-void Colorable::solveProblem(char arq1[], char arq2[]){
+bool Colorable::solveProblem(){
 
 	int status = 0;
 	int n = this->g->GetN();
 	
-	out = fopen(arq1, "w");
-	if (out == NULL){
-		printf("Não foi possivel abrir o arq1\n");
-		return;
-	}
+	//out = fopen(arq1, "w");
+	//if (out == NULL){
+	//	printf("Não foi possivel abrir o arq1\n");
+	//	return;
+	//}
 	
 	//gerando o .lp
-	if (this->it == 0){
-		CPXwriteprob (env, lp, arq2, NULL);
+	//if (this->it == 0){
+	//	CPXwriteprob (env, lp, arq2, NULL);
 		//return;
 		//RESOLVENDO :D :D :D \o \o \o
 
-	}
+	//}
 	
 	status = CPXmipopt(env,lp);
+	status = CPXgetstat (env, lp);
+
+	//printf("%d ", status);
 	
 	double value;
 	//recuperando o valor da FO
 	status = CPXgetobjval(env, lp, &value);
 
-	double vetor[cont];
+	//double vetor[cont];
 	//recuperando o valor das variáveis
-	status= CPXgetx(env, lp, vetor, 0,cont-1);
+	//status= CPXgetx(env, lp, vetor, 0,cont-1);
 	
-	if (value > this->g->GetN()) 
-		value = 0;
-	/*
+	//if (value > this->g->GetN()) 
+	//	value = 0;
+	
 	if (status == 0){
 		printf("\n\tResolvendo ==> ");
 		printf ("Status F.O: %d\t", status);
 		printf ("Status variaveis: %d\t", status);
 		printf("FO = %f\n",value);
 	}
-	
+	/*
 	//ESCREVENDO ARQUIVO DE SAIDA
 	int u,v=0;
 	int contador=0;
@@ -482,15 +452,24 @@ void Colorable::solveProblem(char arq1[], char arq2[]){
 	}
 	*/
 	//printf("\tResolveu\n");
-	fclose(out);
+	//fclose(out);
+
+	//if(status != CPXMIP_INForUNBD && status != CPXMIP_INFEASIBLE) return true;
+	if (this->bestSolution < value)
+		this->bestSolution = value;
+	if (status == 0) return true;
+	else return false;
 }
 
 
 void Colorable::SetG (Graph* g){
 	this->g = g;                // Seta o grafo
-	char* arq2 = "log.txt";     // Arquivo de log
 
 	this->carregarVariaveis();	// Constroi as variaveis para o CPLEX
-	this->startCplex(arq2);	    // Inicializa o CPLEX
+	this->startCplex();	    // Inicializa o CPLEX
 	this->addRestricoes();      // Adiciona as restrições do modelo
+}
+
+int Colorable::GetBestSolution(){
+	return this->bestSolution;
 }

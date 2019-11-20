@@ -15,7 +15,39 @@
 #include <cstdio>
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 
+	//The initial time
+	struct timeval  clockinit;
+
+	//the final time
+	struct timeval  clockend;
+
+	//the time zone
+	struct timezone tz;
+
+	//
+	float seconds;
+
+void start(){
+	seconds = 0.0;
+	gettimeofday(&clockinit, &tz);
+}
+/*
+//Pauses the clock
+float pause(){
+	gettimeofday(&clockend, &tz);
+	seconds += ((float)(clockend.tv_sec - clockinit.tv_sec)) + ((float)(clockend.tv_usec - clockinit.tv_usec))/1000000;
+	gettimeofday(&clockinit, &tz);
+	return seconds;
+}
+*/
+//Stop the clock
+float stop(){
+	gettimeofday(&clockend, &tz);
+	seconds += ((float)(clockend.tv_sec - clockinit.tv_sec)) + ((float)(clockend.tv_usec - clockinit.tv_usec))/1000000;
+	return seconds;
+}
 
 int main(int argc, char **argv){
 
@@ -53,8 +85,11 @@ int main(int argc, char **argv){
 	en->SetBestSolution(1);                         // Seta o valor inicial da melhor solução como 1
 	printf ("Begin enumeration!\n");
 	printf("\n\n\n");
+	start();
+	float elapsedTime = 0;
 	en->buildRoot();                                // Constroi a raiz
 	en->fullEnum();                                 // Enumera todas as soluções
+	elapsedTime = stop();
 	printf ("End enumeration!\n");
 	
 	// ---------------------- Prints ---------------------- //
@@ -71,7 +106,7 @@ int main(int argc, char **argv){
 		printf ("%d ",v[i]);
 	printf("\n");
 
-	printf("OKAY!\n");
+	printf("Demorou %f segundos - OKAY!\n",elapsedTime);
 
 	fclose(fin);
 	fclose(fout);

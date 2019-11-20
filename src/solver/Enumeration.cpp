@@ -24,14 +24,15 @@ Enumeration::~Enumeration() {
 }
 
 void Enumeration::buildRoot(){
-	TreeNode* t = new TreeNode[this->g->GetN()];          // Cria um array de TreeNodes
-	*this->stack = t;                                     // Faz a pilha apontar para o novo array
+
+	this->stack = new TreeNode*[this->g->GetN()];                                     // Faz a pilha apontar para o novo array
 	for (int i = 0; i < this->g->GetN(); i++)             // Inicializa a pilha com TreeNodes vazios
 		this->stack[i] = new TreeNode();
 
 	TreeNode* root = new TreeNode(this->g, this->order);  // Cria a raiz 
 	this->stack[0] = root;                                // primeiro elemento da pilha é a raiz
 	this->stack[0]->print();                              // Print da raiz
+
 }
 
 int Enumeration::solveMax(){
@@ -40,13 +41,28 @@ int Enumeration::solveMax(){
 	printf ("Inicio %d => %d\n",nivel, this->g->GetN() - 1);
 	int MAX_NODES = (int) pow (2.0, (float)this->g->GetN());
 	int leaves = 0;
+	int** solucoes = (int**) malloc(sizeof(int*) * (MAX_NODES/2));
+	int* tamSolucoes = (int*) malloc(sizeof(int) * (MAX_NODES/2));
+	for (size_t i = 0; i < MAX_NODES/2; i++)
+	{
+		solucoes[i] = (int*) malloc(sizeof(int) * this->g->GetN());
+	}
+	int j = 0;
+	printf("alocou!!\n");
 	do
 	{
-		
+		//this->stack[nivel]->print();
+		//getchar();
 		if (!this->stack[nivel]->hasChild()){ // O nó é uma folha
 			printf("\t-------------------------------------------------\n");
 			this->stack[nivel]->print();      // Printa o nó 
-			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum()); // Chamada ao CPLEX
+			solucoes[j] = this->stack[nivel]->getBvertices();
+			tamSolucoes[j++] = this->stack[nivel]->getBNum2();
+			//bool result = this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum()); // Chamada ao CPLEX
+			//if (result == true){
+			//	this->bestsol = this->color->GetBestSolution();
+			//		printf("Melhor solução = %d\n",this->bestsol);
+			//}
 			printf("\t-------------------------------------------------\n");
 			nivel--; leaves++;                // Decrementa o nivel e incrementa o num de folhas
 			continue;
@@ -60,6 +76,7 @@ int Enumeration::solveMax(){
 				continue;
 			}
 		}
+			
 		
 		if (this->stack[nivel]->hasRight() ){  // Caso o filho direito não tenha sido gerado
 			TreeNode* t = this->stack[nivel]->genRight(this->bestsol); // Gera o filho direito
@@ -69,9 +86,39 @@ int Enumeration::solveMax(){
 				continue;
 			}
 		}
-		nivel--; // Caso não tenha filhos e não seja uma folha
+			
+		if (nivel > 0) nivel--; // Caso não tenha filhos e não seja uma folha
 	} while (nivel != 0);
+	for (int i = 0; i < MAX_NODES/2; i++)
+	{
+		if (tamSolucoes[i] == 0) break;
+		for (int j = 0; j < this->g->GetN(); j++)
+		{
+			printf("%d ",solucoes[i][j]);
+		}
+		printf(" => %d\n",tamSolucoes[i]);
+	}
+	int solucoesEncontradas = 0;
+	for (int i = 0; i < MAX_NODES/2; i++)
+	{
+		if (tamSolucoes[i] == 0)
+			break;
+		bool result = this->color->build(solucoes[i], tamSolucoes[i]);
+		if (result == true) {
+			solucoesEncontradas++;
+			printf("\t\t");
+			for (int j = 0; j < this->g->GetN(); j++)
+			{
+				printf("%d ",solucoes[i][j]);
+			}
+			printf(" => %d\n",tamSolucoes[i]);
+		}
+		
+	}
+	
 	printf ("\n\tPrintou %d folhas\n",leaves);
+	printf("Foram encontradas %d soluções e a melhor foi: %d\n",solucoesEncontradas ,this->color->GetBestSolution());
+	
 	return -1;
 }
 
@@ -81,14 +128,24 @@ void Enumeration::fullEnum(){
 	printf ("Inicio %d => %d\n",nivel, this->g->GetN() - 1);
 	int MAX_NODES = (int) pow (2.0, (float)this->g->GetN());
 	int leaves = 0;
+	int** solucoes = (int**) malloc(sizeof(int*) * (MAX_NODES/2));
+	int* tamSolucoes = (int*) malloc(sizeof(int) * (MAX_NODES/2));
+	for (size_t i = 0; i < MAX_NODES/2; i++)
+	{
+		solucoes[i] = (int*) malloc(sizeof(int) * this->g->GetN());
+	}
+	
+	int j = 0;
 	do
 	{
-		
+		//if (nodes > MAX_NODES) break;
 		if (!this->stack[nivel]->hasChild() ){
 			
-			this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());
-			
 			this->stack[nivel]->print();
+			solucoes[j] = this->stack[nivel]->getBvertices();
+			tamSolucoes[j++] = this->stack[nivel]->getBNum2();
+			//this->color->build(this->stack[nivel]->getBvertices(), this->stack[nivel]->getBNum());			
+			//printf("Node: %d < %d\n",nodes, leaves);
 			nivel--; leaves++;
 			continue;
 		}
@@ -107,7 +164,26 @@ void Enumeration::fullEnum(){
 		}
 		nivel--;
 	} while (nivel != 0);
+	for (int i = 0; i < MAX_NODES/2; i++)
+	{
+		for (int j = 0; j < this->g->GetN(); j++)
+		{
+			printf("%d ",solucoes[i][j]);
+		}
+		printf(" => %d\n",tamSolucoes[i]);
+	}
+	int solucoesEncontradas = 0;
+	for (int i = 0; i < MAX_NODES/2; i++)
+	{
+		bool result = this->color->build(solucoes[i], tamSolucoes[i]);
+		if (result == true) {
+			solucoesEncontradas++;
+		}
+		
+	}
 	printf ("\n\tPrintou %d folhas e um total de %d de Possiveis = %d \n",leaves,nodes+1, MAX_NODES);
+	printf("Foram encontradas %d soluções e a melhor foi: %d\n",solucoesEncontradas ,this->color->GetBestSolution());
+	
 }
 
 
