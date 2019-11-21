@@ -51,7 +51,7 @@ void Colorable::startCplex(){
 	env = CPXopenCPLEX(&status);
 
       //criando o problema - inicialmente estará vazio!
-	lp = CPXcreateprob(env, &status,"Formulacao EEEE :D");
+	lp = CPXXcreateprob(env, &status,"Formulacao EEEE :D");
 
 
 	// vetores que vão auxiliar na criação da FO e das variáveis - estão vazios
@@ -87,6 +87,7 @@ void Colorable::startCplex(){
 	
 	//chamadas do CPLEX para adicionar os vetores no modelo - lp
 	status = CPXnewcols (env, lp, contador, obj, lb, ub, type, NULL);
+	//free(obj); free(ub); free(lb); free(type);
 	
 	//só é necessario se for de minimização - max é padrão do cplex
 	CPXchgobjsen(env, lp, CPX_MAX); // CPX_MIN, para o de miminização
@@ -389,7 +390,7 @@ bool Colorable::solveProblem(){
 	int status = 0;
 	int n = this->g->GetN();
 	
-	//out = fopen(arq1, "w");
+	out = fopen("../bin/arq3.txt", "w");
 	//if (out == NULL){
 	//	printf("Não foi possivel abrir o arq1\n");
 	//	return;
@@ -397,13 +398,14 @@ bool Colorable::solveProblem(){
 	
 	//gerando o .lp
 	//if (this->it == 0){
-	//	CPXwriteprob (env, lp, arq2, NULL);
+	char* arq2 = "../bin/arq4.lp";
+	CPXwriteprob (env, lp, arq2, NULL);
 		//return;
 		//RESOLVENDO :D :D :D \o \o \o
 
 	//}
 	
-	status = CPXmipopt(env,lp);
+	status = CPXXmipopt(env,lp);
 	status = CPXgetstat (env, lp);
 
 	//printf("%d ", status);
@@ -412,9 +414,9 @@ bool Colorable::solveProblem(){
 	//recuperando o valor da FO
 	status = CPXgetobjval(env, lp, &value);
 
-	//double vetor[cont];
+	double vetor[cont];
 	//recuperando o valor das variáveis
-	//status= CPXgetx(env, lp, vetor, 0,cont-1);
+	status= CPXgetx(env, lp, vetor, 0,cont-1);
 	
 	//if (value > this->g->GetN()) 
 	//	value = 0;
@@ -425,11 +427,10 @@ bool Colorable::solveProblem(){
 		printf ("Status variaveis: %d\t", status);
 		printf("FO = %f\n",value);
 	}
-	/*
 	//ESCREVENDO ARQUIVO DE SAIDA
 	int u,v=0;
 	int contador=0;
-	/*
+	
 	fprintf(out, "%s\n", "Solucao");
 	fprintf(out, "%s", "Valor objetivo = ");
 	fprintf(out, "%f\n\n", value);
@@ -450,9 +451,11 @@ bool Colorable::solveProblem(){
 			contador++;
 		}
 	}
+	/*
 	*/
 	//printf("\tResolveu\n");
-	//fclose(out);
+	fclose(out);
+	//CPXfreeprob(env, &lp);
 
 	//if(status != CPXMIP_INForUNBD && status != CPXMIP_INFEASIBLE) return true;
 	if (this->bestSolution < value)
@@ -466,8 +469,10 @@ void Colorable::SetG (Graph* g){
 	this->g = g;                // Seta o grafo
 
 	this->carregarVariaveis();	// Constroi as variaveis para o CPLEX
-	this->startCplex();	    // Inicializa o CPLEX
+	this->startCplex();	        // Inicializa o CPLEX
 	this->addRestricoes();      // Adiciona as restrições do modelo
+	/*
+	*/
 }
 
 int Colorable::GetBestSolution(){

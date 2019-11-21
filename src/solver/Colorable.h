@@ -9,6 +9,7 @@
 #define SRC_SOLVER_COLORABLE_H_
 
 #include <ilcplex/cplex.h>
+#include <ilcplex/cplexx.h>
 #include <stdlib.h>
 #include <string.h>
 #include "../tools/Graph.h"
@@ -39,6 +40,8 @@ private:
 	Graph* g;
 
 	int bestSolution;
+
+	int it;
 
 public:
 	Colorable();

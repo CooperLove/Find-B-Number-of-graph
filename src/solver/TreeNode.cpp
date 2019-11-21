@@ -78,6 +78,7 @@ TreeNode* TreeNode::genLeft(int bestsol){
 	this->genL = true; // Marca o filho esquerdo como gerado
 	int bnum = t->getBNum2(); // Numero de bvert -> Bnum() calcula o num e retorna, Bnum2() só retorna
 	
+	
 	int* b = t->getBvertices();
 	int* c = t->getCand();
 	int n = this->g->GetN(); // Tamanho do grafo
@@ -90,7 +91,7 @@ TreeNode* TreeNode::genLeft(int bestsol){
 		if (c[i] == 1 && t->g->degree(i) < bestsol)
 		{ t->getCurCand()[i] = 0; t->setCandNum(t->getCanNum() - 1); }
 	}
-
+	/*
 	//printf("Null ? %d\n",this->g->hasEdge(0,1));
 	int wt = this->getCanNum();
 	for (int u = 0; u < wt; u++){
@@ -98,15 +99,14 @@ TreeNode* TreeNode::genLeft(int bestsol){
 			if (t->getCurCand()[v] - 1 < 0 || t->getCurCand()[u] -1 < 0) continue;
 			int a = t->getCurCand()[u] - 1;
 			int b = t->getCurCand()[v] - 1;
-			printf("bool = %d %d - %d\n",a, b, this->g->GetMatrix()[a][b]);
+			//printf("bool = %d %d - %d\n",a, b, this->g->GetMatrix()[a][b]);
 			//if (!t->g->hasEdge(a,b) && this->g->GetMatrix()[a][b] == 1){
 			//	t->getCurCand()[u] = 0; 
 			//	t->setCandNum (t->getCanNum() - 1);
 			//}
 		}
 	}
-	printf("Corte\n");
-	/*
+	//printf("Corte\n");
 	if (t->getCanNum() > 0){
 		int s = 0;
 		int* new_cand = (int*) malloc(t->getCanNum()* sizeof(int));
@@ -121,9 +121,8 @@ TreeNode* TreeNode::genLeft(int bestsol){
 	}
 	printf("Mudou os cand\n");
 	t->print();
-	t->numcand = t->getCanNum() > 0 ? t->getCanNum() : 0;
 	*/
-	
+	t->numcand = t->getCanNum() > 0 ? t->getCanNum() : 0;
 	for (int i = 0; i < n; i++)
 	{	
 		if (t->getBvertices()[i] == 1 && t->g->degree(i) < bnum - 1)
@@ -132,6 +131,7 @@ TreeNode* TreeNode::genLeft(int bestsol){
 	if (cnum + bnum < bestsol || t->getBNum2() == 0 || t->getBNum2() < bestsol){
 		t->genL = true; t->genR = true;
 	}
+	
 	return t;
 }
 

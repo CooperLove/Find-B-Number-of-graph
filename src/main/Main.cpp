@@ -88,7 +88,7 @@ int main(int argc, char **argv){
 	start();
 	float elapsedTime = 0;
 	en->buildRoot();                                // Constroi a raiz
-	en->fullEnum();                                 // Enumera todas as soluções
+	en->solveMax();                                 // Enumera todas as soluções
 	elapsedTime = stop();
 	printf ("End enumeration!\n");
 	
